@@ -1,7 +1,8 @@
 <?php
 require __DIR__ . "/connect.php";
 function insert($title){
-    $query = 'INSERT INTO Exercices(Title) VALUES ("$title")';
+    $query = "INSERT INTO Exercices(Title)  VALUES ('$title')";
+    
 connect($query);
 }
 
