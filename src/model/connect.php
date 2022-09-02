@@ -2,7 +2,7 @@
 
 function Connect($query){
 try {
-    $dbh = new PDO('mysql:host=10.229.32.55;dbname=maw1.1', "JON", "");
+    $dbh = new PDO('mysql:host=10.229.32.55;dbname=maw11', "JON", "");
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
