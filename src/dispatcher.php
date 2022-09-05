@@ -23,7 +23,15 @@ function dispatch($bag)
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/create$/', $bag['route'])) {
-        $bag['handler'] = 'controller/exercises/create';
+        $bag['handler'] = 'view/exercises/create';
+    }
+    //-----------------------------------------------------------------------------
+    elseif (preg_match('/^\/create_exercise$/', $bag['route'])) {
+        $bag['handler'] = 'controller/exercises/create_exercise';
+    }
+    //-----------------------------------------------------------------------------
+    elseif (preg_match('/^\/exercises$/', $bag['route'])) {
+        $bag['handler'] = 'controller/exercises/index';
     }
     else {
         $bag['status_code'] = 404;
