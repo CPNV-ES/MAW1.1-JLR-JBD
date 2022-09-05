@@ -1,4 +1,5 @@
 <?php $title = "CreateExercise" ?>
+<?php $titleLayout = "New exercice"?>
 
 <h1>New Exercise</h1>
 <form action="/create_exercise" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="H4NTywz5Uu5lskBmT4GsgJ+65+SEMQhJEtyt6DnPoEMdOYMQAXZ0n07kKEH/JZux4Q/w/i2v6pzVVM0qE6Nz2A==">

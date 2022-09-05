@@ -11,7 +11,7 @@
     <header class="heading managing">
       <section class="container">
         <a href="/"><img src="/images/logo.png"></a>
-        <span class="exercise-label">New exercise</span>
+        <span class="exercise-label"><?= $titleLayout?></span>
       </section>
     </header>
     <main class="container">

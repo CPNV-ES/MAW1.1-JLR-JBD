@@ -23,7 +23,7 @@ function dispatch($bag)
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/create$/', $bag['route'])) {
-        $bag['handler'] = 'view/exercises/create';
+        $bag['view'] = 'view/exercises/create';
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/create_exercise$/', $bag['route'])) {

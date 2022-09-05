@@ -8,7 +8,7 @@ function insert($title)
 
 function selectAllExercises()
 {
-  $query = 'SELECT idExercices, title, "state" FROM exercices';
+  $query = 'SELECT title FROM exercices';
   $result = connect($query);
  
   return $result;
