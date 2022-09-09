@@ -12,15 +12,13 @@
       </thead>
 
       <tbody>
-          <tr>
-            <!-- A MODIFIER
-            <td>rgt</td>
-            <td>
-                <a title="Be ready for answers" rel="nofollow" data-method="put" href="https://stormy-plateau-54488.herokuapp.com/exercises/631?exercise%5Bstatus%5D=answering"><i class="fa fa-comment"></i></a>
-              <a title="Manage fields" href="https://stormy-plateau-54488.herokuapp.com/exercises/631/fields"><i class="fa fa-edit"></i></a>
-              <a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete" href="https://stormy-plateau-54488.herokuapp.com/exercises/631"><i class="fa fa-trash"></i></a>
-            </td>-->
-          </tr>
+            <?php
+              foreach($bag['exercises'] as $exercise){
+                if($exercise['state'] == 0){
+                  echo '<tr><td>'.$exercise['title'].'</td><td></td></tr>';
+                }
+              }
+            ?>
            
       </tbody>
     </table>
@@ -37,13 +35,13 @@
       </thead>
 
       <tbody>
-          <tr>
-            <td>&lt;b&gt;new exercise&lt;/b&gt;</td>
-            <td>
-              <a title="Show results" href="https://stormy-plateau-54488.herokuapp.com/exercises/378/results"><i class="fa fa-chart-bar"></i></a>
-              <a title="Close" rel="nofollow" data-method="put" href="https://stormy-plateau-54488.herokuapp.com/exercises/378?exercise%5Bstatus%5D=closed"><i class="fa fa-minus-circle"></i></a>
-            </td>
-          </tr>
+            <?php
+              foreach($bag['exercises'] as $exercise){
+                if($exercise['state'] == 1){
+                  echo '<tr><td>'.$exercise['title'].'</td><td></td></tr>';
+                }
+              }
+            ?>
          
       </tbody>
     </table>

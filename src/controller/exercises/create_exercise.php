@@ -1,10 +1,10 @@
 <?php
 require_once SOURCE_DIR.'/model/queries.php';
 
-$title = $_POST['title'];
+$title_exercise = $_POST['title'];
 
 
 $bag['view'] = 'view/exercises/create_exercise';
-insert($title);
+insert($title_exercise);
 
 return $bag;

@@ -5,6 +5,4 @@ $bag['view'] = 'view/exercises/index';
 
 $bag['exercises'] = selectAllExercises();
 
-var_dump($bag['exercises']);
-
 return $bag;

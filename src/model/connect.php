@@ -6,7 +6,7 @@ function connect($query){
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $statement= $dbh->prepare($query);
         $statement->execute();
-        $result = $statement->fetchAll();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         $dbh = null;
     } catch (PDOException $e) {
         echo 'Échec lors de la connexion : ' . $e->getMessage();
