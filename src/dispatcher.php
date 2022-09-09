@@ -33,6 +33,10 @@ function dispatch($bag)
     elseif (preg_match('/^\/exercises$/', $bag['route'])) {
         $bag['handler'] = 'controller/exercises/index';
     }
+    //-----------------------------------------------------------------------------
+    elseif (preg_match('/^\/exercises\/[1-9]+\/edit$/', $bag['route'])) {
+        $bag['handler'] = 'controller/exercises/edit';
+    }
     else {
         $bag['status_code'] = 404;
     }
