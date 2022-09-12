@@ -15,7 +15,7 @@ function dispatch($bag)
 
     // If any match defines a 'view', it should use our one and only layout.
     $bag['layout'] = 'view/layout';
-
+    
     //-----------------------------------------------------------------------------
     if (preg_match('/^\/?$/', $bag['route'])) {
         unset($bag['layout']);
@@ -32,6 +32,11 @@ function dispatch($bag)
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises$/', $bag['route'])) {
         $bag['handler'] = 'controller/exercises/index';
+    } 
+    //-----------------------------------------------------------------------------
+    elseif (preg_match('/^\/exercises\/[1-9]+$/', $bag['route'], $matches)) {
+       
+        $bag['handler'] = 'controller/exercises/delete';
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/[1-9]+\/edit$/', $bag['route'])) {

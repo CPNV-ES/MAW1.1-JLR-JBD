@@ -13,9 +13,10 @@
 
       <tbody>
             <?php
+
               foreach($bag['exercises'] as $exercise){
                 if($exercise['state'] == 0){
-                  echo '<tr><td>'.$exercise['title'].'</td><td></td></tr>';
+                  echo '<tr><td>'.$exercise['title'].'</td><td><a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete" href="exercises/' . $exercise["idExercises"] . '"'  . '>Delete</a></td></tr>';
                 }
               }
             ?>
