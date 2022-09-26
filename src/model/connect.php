@@ -1,15 +1,50 @@
 <?php
 
-function connect($query){
-    try {
-        $dbh = new PDO('mysql:host=10.229.32.55;dbname=maw11', "JON", "");
-        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $statement= $dbh->prepare($query);
-        $statement->execute();
-        $dbh = null;
-    } catch (PDOException $e) {
-        echo 'Échec lors de la connexion : ' . $e->getMessage();
+class Connect
+{
+    private static $instance;
+    public $dbh;
+
+    public static function getInstance()
+    {
+        if(is_null(self::$instance)){
+            self::$instance = new Connect();
+        }
+        return self::$instance;
     }
-    return $statement;
+
+    private function __construct(){
+        $this->open();
+    }
+
+    public function open()
+    {
+        try {
+            $this->dbh = new PDO('mysql:host=10.229.32.55;dbname=maw11', "JON", "");
+            $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            echo 'Échec lors de la connexion : ' . $e->getMessage();
+        }
+    }
+
+    public function execute($query)
+    {
+        $statement= $this->dbh->prepare($query);
+        $statement->execute();
+        
+        return $statement;
+    }
+
+    public function multipleExecutes($query)
+    {
+        $statement= $this->dbh->prepare($query);
+        $statement->execute();
+        return $statement;
+    }
+
+    public function close()
+    {
+        $this->dbh = null;
+    }
 }
 ?>

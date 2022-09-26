@@ -1,8 +1,12 @@
 <?php
-require_once SOURCE_DIR.'/model/queries.php';
+require_once SOURCE_DIR.'/model/query.php';
+
+$query = Query::getInstance();
 
 $title_exercise = $_POST['title'];
 
-insert($title_exercise);
-$id = selectNewestExercise()['idExercises'];
+$id = $query->insert($title_exercise);
+
+var_dump($id);
+die();
 header('Location: /exercises/'.$id.'/edit');
