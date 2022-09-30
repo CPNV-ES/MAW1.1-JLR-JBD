@@ -1,6 +1,6 @@
 <?php
 
-class Connect
+class DbConnector
 {
     private static $instance;
     public $dbh;
@@ -8,7 +8,7 @@ class Connect
     public static function getInstance()
     {
         if(is_null(self::$instance)){
-            self::$instance = new Connect();
+            self::$instance = new DbConnector();
         }
         return self::$instance;
     }
@@ -32,13 +32,6 @@ class Connect
         $statement= $this->dbh->prepare($query);
         $statement->execute();
         
-        return $statement;
-    }
-
-    public function multipleExecutes($query)
-    {
-        $statement= $this->dbh->prepare($query);
-        $statement->execute();
         return $statement;
     }
 

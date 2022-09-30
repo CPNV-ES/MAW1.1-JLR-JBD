@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . "/connect.php";
+require __DIR__ . "/dbConnector.php";
 require __DIR__ . "/exercise.php";
 
 class Query{
@@ -17,7 +17,7 @@ class Query{
 
     private function __construct()
     {
-        $this->connect = Connect::getInstance();
+        $this->connect = DbConnector::getInstance();
     }
 
     function insert($title)
@@ -27,7 +27,7 @@ class Query{
         return $this->selectExercise($this->connect->dbh->lastInsertId());
     }
 
-    function selectExercise(int $id)
+    /*function selectExercise(int $id)
     {
         $query = "SELECT * FROM exercises WHERE idExercises='$id'";
         $exercise = $this->connect->execute($query)->fetch(PDO::FETCH_ASSOC);
@@ -38,11 +38,31 @@ class Query{
     {
         $query = 'SELECT * FROM exercises';
         return $this->connect->execute($query)->fetchAll(PDO::FETCH_ASSOC);
+    }*/
+
+    function select()
+    {
+        $ids = func_get_args();
+        $exercises = array();
+
+        if($ids == null){
+            $query = 'SELECT * FROM exercises'; 
+        }else{
+            $query = "SELECT * FROM exercises WHERE idExercises IN (".implode(",",$ids).")";
+        }
+
+        $result = $this->connect->execute($query)->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($result as $exercise)
+        {
+            array_push($exercises, new Exercise($exercise["idExercises"],$exercise["title"],$exercise["state"]));
+        }
+        return $exercises;
     }
 
     function delete($id){
         $query = "DELETE FROM exercises WHERE idExercises = '$id'";
-        connect($query);
+        $this->connect->execute($query);
     }
 }
 ?>

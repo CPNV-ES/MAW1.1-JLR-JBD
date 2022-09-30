@@ -14,15 +14,15 @@ class Exercise
     }
 
     public function getId(){
-        return $id;
+        return $this->id;
     }
 
     public function getTitle(){
-        return $title;
+        return $this->title;
     }
 
     public function getState(){
-        return $state;
+        return $this->state;
     }
 }
 

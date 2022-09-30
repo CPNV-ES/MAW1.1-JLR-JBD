@@ -15,8 +15,8 @@
             <?php
 
               foreach($bag['exercises'] as $exercise){
-                if($exercise['state'] == 0){
-                  echo '<tr><td>'.$exercise['title'].'</td><td><a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete" href="exercises/' . $exercise["idExercises"] . '"'  . '><i class="fa fa-trash"></i></a></td></tr>';
+                if($exercise->getState() == 0){
+                  echo '<tr><td>'.$exercise->getTitle().'</td><td><a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete" href="exercises/' . $exercise->getId() . '"'  . '><i class="fa fa-trash"></i></a></td></tr>';
                 }
               }
             ?>
@@ -38,8 +38,8 @@
       <tbody>
             <?php
               foreach($bag['exercises'] as $exercise){
-                if($exercise['state'] == 1){
-                  echo '<tr><td>'.$exercise['title'].'</td><td></td></tr>';
+                if($exercise->getState() == 1){
+                  echo '<tr><td>'.$exercise->getTitle().'</td><td></td></tr>';
                 }
               }
             ?>

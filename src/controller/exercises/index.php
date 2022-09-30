@@ -5,6 +5,6 @@ $query = Query::getInstance();
 
 $bag['view'] = 'view/exercises/index';
 
-$bag['exercises'] = $query->selectAllExercises();
+$bag['exercises'] = $query->select();
 
 return $bag;
