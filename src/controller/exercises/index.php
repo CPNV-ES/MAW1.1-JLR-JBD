@@ -1,7 +1,7 @@
 <?php
 require_once SOURCE_DIR.'/model/query.php';
 
-$query = Query::getInstance();
+$query = new Query();
 
 $bag['view'] = 'view/exercises/index';
 
