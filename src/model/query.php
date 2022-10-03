@@ -42,7 +42,7 @@ class Query{
         return $exercises;
     }
 
-    function delete($arg){
+    function delete($id){
         $query = "DELETE FROM exercises WHERE idExercises = '$id'";
         $this->connect->execute($query);
     }

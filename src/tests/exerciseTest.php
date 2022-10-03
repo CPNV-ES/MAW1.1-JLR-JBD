@@ -17,26 +17,31 @@ final class exerciseTest extends TestCase
     public function testExerciseIsCreatedWithTitle(): void
     {
         $query = new Query();
-       
+        $result = $query->select("testExerciseIsCreatedWithTitle");
+        $query->delete($result[0]->getId());
         $query->insert("testExerciseIsCreatedWithTitle");
-        $result = $query->select();
-        $this->assertStringContainsString($result, "testExerciseIsCreatedWithTitle");
+        $this->assertStringContainsString($result[0]->getTitle(), "testExerciseIsCreatedWithTitle");
 
     }
     public function testExerciseIsDeleted(): void
     {
         $query = new Query();
-       
+        $result = $query->select("testExerciseIsDeleted");
+        if(!isset($result)){
+        $query->delete($result[0]->getId());
+        }
         $query->insert("testExerciseIsDeleted");
-        $query->delete("testExerciseIsDeleted");
-        $result = $query->select();
-        $this->assertStringNotContainsString($result, "testExerciseIsDeleted");
+        $result = $query->select("testExerciseIsDeleted");
+        $query->delete($result[0]->getId());
+        $result = $query->select("testExerciseIsDeleted");
+        $this->assertCount(0, $result);
     }
 
     public function testSelectOneExercise(): void
     {
         $query = new Query();
-       
+        $result = $query->select("testSelectOneExercise");
+        $query->delete($result[0]->getId());
         $query->insert("testSelectOneExercise");
         $result = $query->select("testSelectOneExercise");
         $this->assertCount(1, $result);
@@ -45,12 +50,15 @@ final class exerciseTest extends TestCase
     public function testSelectFourExercises(): void
     {
         $query = new Query();
-       
+        $result = $query->select("testSelectFourExercises1","testSelectFourExercises2","testSelectFourExercises3","testSelectFourExercises4");
+        foreach($result as $entry){
+            $query->delete($entry->getId());
+        }
         $query->insert("testSelectFourExercises1");
         $query->insert("testSelectFourExercises2");
         $query->insert("testSelectFourExercises3");
         $query->insert("testSelectFourExercises4");
         $result = $query->select("testSelectFourExercises1","testSelectFourExercises2","testSelectFourExercises3","testSelectFourExercises4");
-        $this->assertCount(1, $result);
+        $this->assertCount(4, $result);
     }
 }
