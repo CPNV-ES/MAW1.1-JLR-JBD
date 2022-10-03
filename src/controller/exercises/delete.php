@@ -7,4 +7,3 @@ $query = new Query();
 
 $query->delete($bag["id_exercise"]);
 header('Location: /exercises');
-return $bag;

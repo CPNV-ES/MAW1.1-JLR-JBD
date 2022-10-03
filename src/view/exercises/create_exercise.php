@@ -1,11 +1,4 @@
 
-<!-- saved from url=(0063)https://stormy-plateau-54488.herokuapp.com/exercises/686/fields -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><header class="heading managing">
-  <section class="container">
-    <a href="https://stormy-plateau-54488.herokuapp.com/"><img src="./CreateExercice_files/logo-84d7d70645fbe179ce04c983a5fae1e6cba523d7cd28e0cd49a04707ccbef56e.png"></a>
-    <span class="exercise-label">Exercise: <a href="https://stormy-plateau-54488.herokuapp.com/exercises/686/fields">u</a></span>
-  </section>
-</header>
 
 <main class="container">
   

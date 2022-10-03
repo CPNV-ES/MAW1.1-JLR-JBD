@@ -34,11 +34,9 @@ function dispatch($bag)
         $bag['handler'] = 'controller/exercises/index';
     } 
     //-----------------------------------------------------------------------------
-    elseif (preg_match('/^\/exercises\/(.+?)$/', $bag['route'], $matches)) {
-       
+    elseif (preg_match('/^\/exercises\/\d+$/', $bag['route'], $matches)) {
         $bag['handler'] = 'controller/exercises/delete';
-       
-        $bag['id_exercise'] = urldecode($matches[1]);
+        $bag['id_exercise'] = urldecode(explode("/exercises/",$matches[0])[1]);
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/[1-9]+\/edit$/', $bag['route'])) {
