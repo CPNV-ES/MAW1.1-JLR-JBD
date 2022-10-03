@@ -17,15 +17,20 @@ class Query{
         $this->connect->execute($query);
     }
 
-    function select()
+    function select(...$args)
     {
-        $ids = func_get_args();
         $exercises = array();
 
-        if($ids == null){
+        if($args == null){
             $query = 'SELECT * FROM exercises'; 
         }else{
-            $query = "SELECT * FROM exercises WHERE idExercises IN (".implode(",",$ids).")";
+            if(is_string($args[0])){
+                $query = "SELECT * FROM exercises WHERE title IN ('".implode("','",$args)."')";
+            }else if(is_numeric($args[0])){
+                $query = "SELECT * FROM exercises WHERE idExercises IN (".implode(",",$args).")";
+            }else{
+                throw new Exception('It\'s not a number of a string');
+            }
         }
 
         $result = $this->connect->execute($query)->fetchAll(PDO::FETCH_ASSOC);
@@ -37,7 +42,7 @@ class Query{
         return $exercises;
     }
 
-    function delete($id){
+    function delete($arg){
         $query = "DELETE FROM exercises WHERE idExercises = '$id'";
         $this->connect->execute($query);
     }
