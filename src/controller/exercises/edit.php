@@ -1,3 +1,3 @@
 <?php
 
-$bag['view'] = 'view/exercises/create_exercise';
+$bag['view'] = 'view/exercises/edit';

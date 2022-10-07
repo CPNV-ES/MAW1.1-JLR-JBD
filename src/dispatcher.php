@@ -36,11 +36,12 @@ function dispatch($bag)
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/\d+$/', $bag['route'], $matches)) {
         $bag['handler'] = 'controller/exercises/delete';
-        $bag['id_exercise'] = urldecode(explode("/exercises/",$matches[0])[1]);
+        $bag['id_exercise'] = (int)filter_var($matches[0], FILTER_SANITIZE_NUMBER_INT);
     }
     //-----------------------------------------------------------------------------
-    elseif (preg_match('/^\/exercises\/[1-9]+\/edit$/', $bag['route'])) {
+    elseif (preg_match('/^\/exercises\/\d+\/edit$/', $bag['route'], $matches)) {
         $bag['handler'] = 'controller/exercises/edit';
+        $bag['id_exercise'] = (int)filter_var($matches[0], FILTER_SANITIZE_NUMBER_INT);
     }
     else {
         $bag['status_code'] = 404;
