@@ -1,10 +1,10 @@
 <?php
-require_once SOURCE_DIR.'/model/query.php';
+require_once SOURCE_DIR.'/model/exerciseHandler.php';
 
-$query = new Query();
+$handler = ExerciseHandler::getInstance();;
 
 $bag['view'] = 'view/exercises/index';
 
-$bag['exercises'] = $query->select();
+$bag['exercises'] = $handler->getExercice();
 
 return $bag;
