@@ -5,60 +5,96 @@ require_once 'src/model/query.php';
 
 final class exerciseTest extends TestCase
 {
- 
-    public function testExerciseTitleCannotBeNull(): void
+    protected $query;
+    protected $exerciceHandler; //TODO static class
+
+    protected function setUp()
     {
+        $this->query = new Query();
+        $this->exerciceHandler = new ExerciceHandler($query);//TODO static class
+    }
+
+    public function test_CreateNominalCase_Success(): void
+    {
+        //given
+        $exercice = new Exercice("test_CreateNominalCase_Success");
+        //assert exist
+
+        //when
+        $exerciceHanlder->create($exercie);
+
+        //then
+        $this->assertIsTrue($exerciceHandler->exists($exercice));
+    }
+
+    public function test_CreateNewExeciceDuplicateTitle_ThrowException(): void
+    {
+        //given
+        $exercice = new Exercice("test_CreateNewExeciceDuplicateTitle_ThrowException");
+        $exerciceHanlder->create($exercie);
+        //assert exist
+
+        //when
+        //Event is called by assertion directly
+
+        //then
         $this->expectException(PDOException::class);
-        $query = new Query();
-        $query->insert("");
-        
-        
-    }
-    public function testExerciseIsCreatedWithTitle(): void
-    {
-        $query = new Query();
-        $result = $query->select("testExerciseIsCreatedWithTitle");
-        $query->delete($result[0]->getId());
-        $query->insert("testExerciseIsCreatedWithTitle");
-        $this->assertStringContainsString($result[0]->getTitle(), "testExerciseIsCreatedWithTitle");
-
-    }
-    public function testExerciseIsDeleted(): void
-    {
-        $query = new Query();
-        $result = $query->select("testExerciseIsDeleted");
-        if(!isset($result)){
-        $query->delete($result[0]->getId());
-        }
-        $query->insert("testExerciseIsDeleted");
-        $result = $query->select("testExerciseIsDeleted");
-        $query->delete($result[0]->getId());
-        $result = $query->select("testExerciseIsDeleted");
-        $this->assertCount(0, $result);
+        $exerciceDuplicate = new Exercice("Title");
     }
 
-    public function testSelectOneExercise(): void
+    public function test_CreateNewExercice_Success(): void
     {
+        //given
+        $previousExerice = $exerciceHandler->getExerice("test_CreateNewExercice_Success")->getTitle();
+        $exerciceHandler->delete($previousExerice);
         $query = new Query();
-        $result = $query->select("testSelectOneExercise");
-        $query->delete($result[0]->getId());
-        $query->insert("testSelectOneExercise");
-        $result = $query->select("testSelectOneExercise");
-        $this->assertCount(1, $result);
+        $exercice = new Exercice("test_CreateNewExercice_Success");
+        $exerciceHanlder->create($exercie);
+        //assert doesn't exist
+
+        //when
+        //Event is called by assertion directly
+
+        //then
+        $this->assertIsTrue($exerciceHandler->exists($exercice));
 
     }
-    public function testSelectFourExercises(): void
+    public function test_DeleteExercise_Success(): void
     {
+        //given
+        $previousExerice = $exerciceHandler->getExerice("test_DeleteExercise_Success")->getTitle();
+        $exerciceHandler->delete($previousExerice);
         $query = new Query();
-        $result = $query->select("testSelectFourExercises1","testSelectFourExercises2","testSelectFourExercises3","testSelectFourExercises4");
-        foreach($result as $entry){
+        $exercice = new Exercice("test_DeleteExercise_Success");
+        $exerciceHanlder->create($exercie);
+        $exerciceHanlder->delete($exercie);
+        //delete Exercise
+
+ 
+        //when
+        //Event is called by assertion directly
+ 
+        //then
+        $this->assertCount(0, $exerciceHandler->getExerice($exercice)->getTitle());
+    }
+
+   
+    public function test_SelectFourExercises_Success(): void
+    {
+        $previousExerice = $exerciceHandler->getExerice("test_DeleteExercise_Success");
+        foreach($previousExerice as $entry){
+
             $query->delete($entry->getId());
         }
-        $query->insert("testSelectFourExercises1");
-        $query->insert("testSelectFourExercises2");
-        $query->insert("testSelectFourExercises3");
-        $query->insert("testSelectFourExercises4");
-        $result = $query->select("testSelectFourExercises1","testSelectFourExercises2","testSelectFourExercises3","testSelectFourExercises4");
-        $this->assertCount(4, $result);
+        //assert 4 exerices
+
+ 
+        //when
+        //Event is called by assertion directly
+ 
+        //then
+      
+        $exerciceHanlder->create("testSelectFourExercises1","testSelectFourExercises2","testSelectFourExercises3","testSelectFourExercises4");
+        $this->assertCount(4, $exerciceHandler->getExerice("testSelectFourExercises1","testSelectFourExercises2","testSelectFourExercises3","testSelectFourExercises4"));
     }
 }
