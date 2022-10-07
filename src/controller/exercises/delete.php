@@ -1,9 +1,9 @@
 <?php
-require_once SOURCE_DIR.'/model/query.php';
+require_once SOURCE_DIR.'/model/exerciseHandler.php';
 
 $title_exercise = $_POST['title'];
 
-$query = new Query();
+$handler = ExerciseHandler::getInstance();;
 
-$query->delete($bag["id_exercise"]);
+$handler->delete($bag["id_exercise"]);
 header('Location: /exercises');

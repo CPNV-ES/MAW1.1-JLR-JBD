@@ -20,8 +20,8 @@ class Query{
     function select(...$args)
     {
         $exercises = array();
-
-        if($args == null){
+       
+        if($args[0] == null){
             $query = 'SELECT * FROM exercises'; 
         }else{
             if(is_string($args[0])){
@@ -29,16 +29,17 @@ class Query{
             }else if(is_numeric($args[0])){
                 $query = "SELECT * FROM exercises WHERE idExercises IN (".implode(",",$args).")";
             }else{
-                throw new Exception('It\'s not a number of a string');
+                throw new Exception('It\'s not a number or a string');
             }
         }
-
+      
         $result = $this->connect->execute($query)->fetchAll(PDO::FETCH_ASSOC);
 
         foreach($result as $exercise)
         {
             array_push($exercises, new Exercise($exercise["idExercises"],$exercise["title"],$exercise["state"]));
         }
+       
         return $exercises;
     }
 
