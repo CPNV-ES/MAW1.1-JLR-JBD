@@ -43,8 +43,16 @@ class Query{
         return $exercises;
     }
 
-    function delete($id){
-        $query = "DELETE FROM exercises WHERE idExercises = '$id'";
+    function delete($exercise){
+       
+        if(is_string($exercise)){
+            $query = "DELETE FROM exercises WHERE title = '$exercise'";
+        }else if(is_numeric($exercise)){
+            $query = "DELETE FROM exercises WHERE idExercises = '$exercise'";
+        }else{
+            throw new Exception('It\'s not a number or a string');
+        }
+        
         $this->connect->execute($query);
     }
 }

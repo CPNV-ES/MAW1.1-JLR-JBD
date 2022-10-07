@@ -20,35 +20,48 @@ class ExerciseHandler
         return self::$instance;
     }
     /**
-    * @param Exercise[]
+    * @param string[]
     */
-    function create(Exercise $exercises) : void
+    function create($exercises) : void
     {
 
         $this->query->insert($exercises);
     }
-    /**
-    * @param Exercise[]
-    */
-    function exists(Exercise $exercises) : bool
+  
+    function exists($exercises) : bool
     {
-
-        $result = $this->query->select($exercises);
-        return in_array($exercises, $result);
+        $result = $this->getExercise($exercises);
+    
+        if(isset($result)){
+          if(isset($result[0]) ) {
+            if($exercises == $result[0]->getTitle()){
+                return true;
+            }else{
+                return false; 
+            }
+            }else{
+                if($exercises == $result){
+                    return true;
+                }else{
+                    return false; 
+                }
+            }
+        }else
+        {
+            return false; 
+        }
     }
 
     /**
     * @return Exercise[]
     */
-    function getExercice($exercises = null)  : array
+    function getExercise($exercises = null)  : array
     {
        
         return $this->query->select($exercises);
     }
-    /**
-    * @param string[]
-    */
-    function delete(string $exercises) : void
+   
+    function delete($exercises) : void
     {
         $this->query->delete($exercises);
     }
