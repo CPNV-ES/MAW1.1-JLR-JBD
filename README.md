@@ -28,7 +28,9 @@ Notre environnement de travail consiste d'un IDE, PHP, visialiseur de base de do
 - Mysql Workbench : la version de l'application à peu d'importance, l'application est juste utilisée pour faire un schéma MLD, une autre application qui peux faire un schéma MLD, est aussi une option valable pour le projet
 - DrawIO : parreil que pour Mysql Workbench, peu importe, l'application ou la version, il faut juste une application permmetant de faire un MCD
 
-
+# Choix
+## typage
+Le typage est pris en compte dans les classes, avec la bonne utilisation des types
 # Source
 Le projet de base (Vue), est pris de [stormy-plateau-54488.herokuapp.com](https://stormy-plateau-54488.herokuapp.com), y compris le CSS
 # Language utilisé
