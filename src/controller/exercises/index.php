@@ -5,6 +5,6 @@ $handler = ExerciseHandler::getInstance();;
 
 $bag['view'] = 'view/exercises/index';
 
-$bag['exercises'] = $handler->getExercice();
+$bag['exercises'] = $handler->getExercise();
 
 return $bag;
