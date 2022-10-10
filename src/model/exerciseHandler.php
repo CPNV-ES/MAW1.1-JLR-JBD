@@ -26,10 +26,10 @@ class ExerciseHandler
     {
         try
         {
-        $this->query->insert($exercises);
+            $this->query->insert($exercises);
         }
         catch(PDOException $e){
-         throw new DuplicateTitleException();
+            throw new DuplicateTitleException();
         }
     }
   
@@ -68,9 +68,17 @@ class ExerciseHandler
    
     function delete($exercises) : void
     {
-        $this->query->delete($exercises);
+        try
+        {
+            $this->query->delete($exercises);
+        }
+        catch(PDOException $e)
+        {
+            throw new NotFoundException();
+        }
     }
 }
 
 class ExerciseHandlerException extends Exception{}
 class DuplicateTitleException extends ExerciseHandlerException{}
+class NotFoundException extends ExerciseHandlerException{}

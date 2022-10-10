@@ -4,14 +4,14 @@ require __DIR__ . "/exercise.php";
 
 class Query{
 
-    private $connect;
+    private DbConnector $connect;
 
     function __construct()
     {
         $this->connect = DbConnector::getInstance();
     }
 
-    function insert($title)
+    function insert(string $title) : void
     {
         $query = "INSERT INTO exercises(Title, state) VALUES ('$title', '0')";
         $this->connect->execute($query);
@@ -43,7 +43,8 @@ class Query{
         return $exercises;
     }
 
-    function delete($exercise){
+    function delete($exercise) : void
+    {
        
         if(is_string($exercise)){
             $query = "DELETE FROM exercises WHERE title = '$exercise'";

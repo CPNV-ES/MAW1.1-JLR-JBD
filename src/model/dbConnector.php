@@ -2,10 +2,10 @@
 
 class DbConnector
 {
-    private static $instance;
-    public $dbh;
+    private static  $instance;
+    public PDO $dbh;
 
-    public static function getInstance()
+    public static function getInstance() : DbConnector
     {
         if(is_null(self::$instance)){
             self::$instance = new DbConnector();
@@ -27,7 +27,7 @@ class DbConnector
         }
     }
 
-    public function execute($query)
+    public function execute(string $query) : PDOStatement
     {
         $statement= $this->dbh->prepare($query);
         $statement->execute();
@@ -35,7 +35,7 @@ class DbConnector
         return $statement;
     }
 
-    public function close()
+    public function close() : void
     {
         $this->dbh = null;
     }

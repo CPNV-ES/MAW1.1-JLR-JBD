@@ -2,9 +2,9 @@
 
 class Exercise
 {
-    private $id;
-    private $title;
-    private $state;
+    private int $id;
+    private string $title;
+    private int $state;
 
     public function __construct(int $id, string $title, int $state)
     {
@@ -13,15 +13,18 @@ class Exercise
         $this->state = $state;
     }
 
-    public function getId(){
+    public function getId() : int
+    {
         return $this->id;
     }
 
-    public function getTitle(){
+    public function getTitle() : string
+    {
         return $this->title;
     }
 
-    public function getState(){
+    public function getState() : int
+    {
         return $this->state;
     }
 }
