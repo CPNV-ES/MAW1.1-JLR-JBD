@@ -24,8 +24,13 @@ class ExerciseHandler
     */
     function create($exercises) : void
     {
-
+        try
+        {
         $this->query->insert($exercises);
+        }
+        catch(PDOException $e){
+         throw new DuplicateTitleException();
+        }
     }
   
     function exists($exercises) : bool
@@ -66,3 +71,6 @@ class ExerciseHandler
         $this->query->delete($exercises);
     }
 }
+
+class ExerciseHandlerException extends Exception{}
+class DuplicateTitleException extends ExerciseHandlerException{}

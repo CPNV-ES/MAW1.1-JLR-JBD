@@ -32,17 +32,16 @@ final class HandlerTest extends TestCase
     public function test_CreateNewExeciceDuplicateTitle_ThrowException(): void
     {
         //given
-        $exercise = new Exercise(0,"test_Create_ThrowException",0);
-        $this->delete($exercise);
+        $this->exerciseTitle = "test_ThrowException";
+        $this->assertFalse($this->exerciseHandler->exists($this->exerciseTitle));
+        $exercise = new Exercise(0,$this->exerciseTitle,0);
         $this->exerciseHandler->create($exercise->getTitle());
-       
-        //assert exist
 
         //when
-        //Event is called by assertion directly
+        //event will be trigger by the assertion
 
         //then
-        $this->expectException(PDOException::class);
+        $this->expectException(DuplicateTitleException::class);
         $this->exerciseHandler->create($exercise->getTitle());
     }
 
