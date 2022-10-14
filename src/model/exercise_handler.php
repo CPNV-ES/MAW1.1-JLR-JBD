@@ -8,7 +8,8 @@ class ExerciseHandler
     private $query;
     public $handler;
 
-    function __construct(){
+    protected function __construct()
+    {
         $this->query = new Query();
     }
 
@@ -19,6 +20,7 @@ class ExerciseHandler
         }
         return self::$instance;
     }
+
     /**
     * @param string[]
     */
@@ -32,38 +34,13 @@ class ExerciseHandler
             throw new DuplicateTitleException();
         }
     }
-  
-    function exists($exercises) : bool
-    {
-        $result = $this->getExercise($exercises);
-    
-        if(isset($result)){
-          if(isset($result[0]) ) {
-            if($exercises == $result[0]->getTitle()){
-                return true;
-            }else{
-                return false; 
-            }
-            }else{
-                if($exercises == $result){
-                    return true;
-                }else{
-                    return false; 
-                }
-            }
-        }else
-        {
-            return false; 
-        }
-    }
 
     /**
     * @return Exercise[]
     */
-    function getExercise($exercises = null)  : array
+    function getExercise(...$exercises)  : array
     {
-       
-        return $this->query->select($exercises);
+        return $this->query->select(...$exercises);
     }
    
     function delete($exercises) : void
