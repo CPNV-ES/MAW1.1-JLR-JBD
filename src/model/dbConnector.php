@@ -17,7 +17,7 @@ class DbConnector
         $this->open();
     }
 
-    public function open()
+    public function open() : void
     {
         try {
             $this->dbh = new PDO('mysql:host=10.229.32.60;dbname=maw11', "JON", "");

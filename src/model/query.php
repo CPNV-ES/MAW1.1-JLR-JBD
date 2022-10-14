@@ -17,7 +17,7 @@ class Query{
         $this->connect->execute($query);
     }
 
-    function select(...$args)
+    function select(...$args) : array
     {
         $exercises = array();
        
