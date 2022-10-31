@@ -9,7 +9,7 @@ class Question{
     private String $result;
     private Int $type;
 
-    public function __construct(String $name, String $result)
+    public function __construct(String $name, String $result, Int $type)
     {
        
     }

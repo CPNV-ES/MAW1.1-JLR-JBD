@@ -1,5 +1,5 @@
 <?php
-require_once SOURCE_DIR.'/model/exerciseHandler.php';
+require_once SOURCE_DIR.'/model/exercise_handler.php';
 
 $title_exercise = $_POST['title'];
 
