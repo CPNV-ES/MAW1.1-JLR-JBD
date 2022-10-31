@@ -5,12 +5,14 @@ require_once 'src/model/exercise_handler.php';
 require_once 'src/model/exercise.php';
 final class HandlerTest extends TestCase
 {
+
     protected $exerciseHandler;
     protected $exerciseTitle;
 
     protected function setUp() : void
     {
         $this->exerciseHandler = ExerciseHandler::getInstance();
+
     }
 
     public function test_CreateNominalCase_Success(): void
