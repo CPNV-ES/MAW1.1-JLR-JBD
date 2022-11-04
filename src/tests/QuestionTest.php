@@ -26,9 +26,9 @@ final class QuestionTest extends TestCase
 
         //when
         $question = new Question($questionTitle,$questionResult,$questionType);
-        $this->exerciseHandler->create($question->getTitle());
+        $this->exerciseHandler->create($question->getName());
         //then
-        $this->assertTrue($this->exists($question->getTitle()));
+        $this->assertTrue($this->exists($question->getName()));
     }
     public function test_CreateNewExeciceDuplicateTitle_ThrowException(): void
     {
@@ -39,14 +39,14 @@ final class QuestionTest extends TestCase
          $this->exerciseTitle = "test_ThrowExceptionQuestion";
          $this->assertFalse($this->exists($questionTitle));
          $question = new Question($questionTitle,$questionResult,$questionType);
-         $this->exerciseHandler->create($question->getTitle());
+         $this->exerciseHandler->create($question->getName());
  
          //when
          //event will be trigger by the assertion
  
          //then
          $this->expectException(DuplicateTitleException::class);
-         $this->exerciseHandler->create($question->getTitle());
+         $this->exerciseHandler->create($question->getName());
     }
 
 
@@ -119,7 +119,7 @@ final class QuestionTest extends TestCase
 
         if(count($results) > 0) {
             for($i = 0; $i < count($results); $i++){
-                if ($results[$i]->getTitle() != $questions[$i]){
+                if ($results[$i]->getName() != $questions[$i]){
                     return false;
                 }
             }
