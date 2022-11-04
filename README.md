@@ -30,7 +30,8 @@ Notre environnement de travail consiste d'un IDE, PHP, visialiseur de base de do
 
 # Choix
 ## typage
-Le typage est pris en compte dans les classes, avec la bonne utilisation des types
+Le typage est pris en compte dans les classes, avec la bonne utilisation des types, afin d'éviter des problèmes à l'affection d'une variable php, et son utilisation par la suite
+
 # Source
 Le projet de base (Vue), est pris de [stormy-plateau-54488.herokuapp.com](https://stormy-plateau-54488.herokuapp.com), y compris le CSS
 # Language utilisé

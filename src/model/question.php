@@ -2,7 +2,8 @@
 
 use PhpParser\Node\Expr\Cast\String_;
 
-class Question{
+class Question
+{
 
     private Int $id;
     private String $name;
@@ -11,22 +12,20 @@ class Question{
 
     public function __construct(String $name, String $result, Int $type)
     {
-       
     }
 
-    public function getName() : String
+    public function getName(): String
     {
         return "";
     }
 
-    public function getResult() : String
+    public function getResult(): String
     {
         return "";
     }
-    
-    public function getType() : Int
+
+    public function getType(): Int
     {
         return 0;
     }
-
 }

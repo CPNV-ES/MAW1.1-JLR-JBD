@@ -25,7 +25,7 @@ final class QuestionTest extends TestCase
         $this->assertFalse($this->exists($questionTitle));
 
         //when
-        $question = new Question($questionTitle,$questionResult,$questionType);
+        $question = new Question($questionTitle, $questionResult, $questionType);
         $this->exerciseHandler->create($question->getName());
         //then
         $this->assertTrue($this->exists($question->getName()));
@@ -38,7 +38,7 @@ final class QuestionTest extends TestCase
          $questionType = 1;
          $this->exerciseTitle = "test_ThrowExceptionQuestion";
          $this->assertFalse($this->exists($questionTitle));
-         $question = new Question($questionTitle,$questionResult,$questionType);
+         $question = new Question($questionTitle, $questionResult, $questionType);
          $this->exerciseHandler->create($question->getName());
  
          //when
@@ -57,7 +57,7 @@ final class QuestionTest extends TestCase
         $questionResult = "test_DeleteExercise_SuccessQuestion";
         $questionType = 1;
         $this->exerciseTitle = "test_DeleteExercise_Success";
-        $question = new Question($questionTitle,$questionResult,$questionType);
+        $question = new Question($questionTitle, $questionResult, $questionType);
         $this->exerciseHandler->create($questionTitle);
         $this->assertTrue($this->exists($questionTitle));
       
@@ -76,10 +76,10 @@ final class QuestionTest extends TestCase
    
     public function test_SelectFourExercises_Success(): void
     {
-       //given
+        //given
     
-       $questionResult = "test";
-       $questionType = 1;
+        $questionResult = "test";
+        $questionType = 1;
         for($i = 0; $i <= 4; $i++){
             $this->exerciseTitle = "test_DeleteExercise_Success" . $i;
             $questionTitle = "test_DeleteExercise_SuccessQuestion" . $i;
@@ -92,7 +92,7 @@ final class QuestionTest extends TestCase
         //when
         for($i = 0; $i <= 4; $i++){
             $questionTitle = "test_DeleteExercise_SuccessQuestion" . $i;
-            $question = new Question($questionTitle,$questionResult,$questionType);
+            $question = new Question($questionTitle, $questionResult, $questionType);
             $this->exerciseHandler->create($questionTitle);
 
         }
@@ -100,14 +100,14 @@ final class QuestionTest extends TestCase
         $array = array();
         for($i = 0; $i <= 4; $i++){
            
-          array_push($array, $this->exerciseHandler->getQuestion("test_DeleteExercise_SuccessQuestion" . $i));
+            array_push($array, $this->exerciseHandler->getQuestion("test_DeleteExercise_SuccessQuestion" . $i));
        
         }
        
         $this->assertCount(5, $array);
         for($i = 0; $i <= 4; $i++){
             $questionTitle= "test_DeleteExercise_SuccessQuestion" . $i;
-            $question = new Question($questionTitle,$questionResult,$questionType);
+            $question = new Question($questionTitle, $questionResult, $questionType);
             $this->exerciseHandler->delete($questionTitle);
 
         }
@@ -119,7 +119,7 @@ final class QuestionTest extends TestCase
 
         if(count($results) > 0) {
             for($i = 0; $i < count($results); $i++){
-                if ($results[$i]->getName() != $questions[$i]){
+                if ($results[$i]->getName() != $questions[$i]) {
                     return false;
                 }
             }
@@ -131,7 +131,7 @@ final class QuestionTest extends TestCase
    
     protected function tearDown() : void
     {
-        if($this->exists($this->exerciseTitle)){
+        if($this->exists($this->exerciseTitle)) {
             $this->exerciseHandler->delete($this->exerciseTitle);
         }
     }

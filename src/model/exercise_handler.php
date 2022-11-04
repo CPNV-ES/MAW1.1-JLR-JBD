@@ -15,15 +15,15 @@ class ExerciseHandler
 
     public static function getInstance() : ExerciseHandler
     {
-        if(is_null(self::$instance)){
+        if(is_null(self::$instance)) {
             self::$instance = new ExerciseHandler();
         }
         return self::$instance;
     }
 
     /**
-    * @param string[]
-    */
+     * @param string[]
+     */
     function create($exercises) : void
     {
         try
@@ -36,8 +36,8 @@ class ExerciseHandler
     }
 
     /**
-    * @return Exercise[]
-    */
+     * @return Exercise[]
+     */
     function getExercise(...$exercises)  : array
     {
         return $this->query->select(...$exercises);
@@ -56,6 +56,15 @@ class ExerciseHandler
     }
 }
 
-class ExerciseHandlerException extends Exception{}
-class DuplicateTitleException extends ExerciseHandlerException{}
-class NotFoundException extends ExerciseHandlerException{}
+class ExerciseHandlerException extends Exception
+{
+
+}
+class DuplicateTitleException extends ExerciseHandlerException
+{
+
+}
+class NotFoundException extends ExerciseHandlerException
+{
+
+}

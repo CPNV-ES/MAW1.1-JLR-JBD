@@ -1,4 +1,7 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
+
 use PHPUnit\Framework\TestCase;
 
 require_once 'src/model/exercise_handler.php';
@@ -9,10 +12,9 @@ final class HandlerTest extends TestCase
     protected $exerciseHandler;
     protected $exerciseTitle;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->exerciseHandler = ExerciseHandler::getInstance();
-
     }
 
     public function test_CreateNominalCase_Success(): void
@@ -22,7 +24,7 @@ final class HandlerTest extends TestCase
         $this->assertFalse($this->exists($this->exerciseTitle));
 
         //when
-        $exercise = new Exercise(0,$this->exerciseTitle,0);
+        $exercise = new Exercise(0, $this->exerciseTitle, 0);
         $this->exerciseHandler->create($exercise->getTitle());
         //then
         $this->assertTrue($this->exists($exercise->getTitle()));
@@ -33,7 +35,7 @@ final class HandlerTest extends TestCase
         //given
         $this->exerciseTitle = "test_ThrowException";
         $this->assertFalse($this->exists($this->exerciseTitle));
-        $exercise = new Exercise(0,$this->exerciseTitle,0);
+        $exercise = new Exercise(0, $this->exerciseTitle, 0);
         $this->exerciseHandler->create($exercise->getTitle());
 
         //when
@@ -46,30 +48,30 @@ final class HandlerTest extends TestCase
 
     public function test_CreateNewexercise_Success(): void
     {
-         //given
-         $this->exerciseTitle = "test_CreateNewexercise_Success";
-         $this->assertFalse($this->exists($this->exerciseTitle));
- 
-         //when
-         $exercise = new Exercise(0,$this->exerciseTitle,0);
-         $this->exerciseHandler->create($exercise->getTitle());
- 
-         //then
-         $this->assertTrue($this->exists($exercise->getTitle()));
+        //given
+        $this->exerciseTitle = "test_CreateNewexercise_Success";
+        $this->assertFalse($this->exists($this->exerciseTitle));
+
+        //when
+        $exercise = new Exercise(0, $this->exerciseTitle, 0);
+        $this->exerciseHandler->create($exercise->getTitle());
+
+        //then
+        $this->assertTrue($this->exists($exercise->getTitle()));
     }
     public function test_DeleteExercise_Success(): void
     {
         //given
-    
+
         $this->exerciseTitle = "test_DeleteExercise_Success";
-        $exercise = new exercise(0,$this->exerciseTitle,0);
+        $exercise = new exercise(0, $this->exerciseTitle, 0);
         $this->exerciseHandler->create($this->exerciseTitle);
         $this->assertTrue($this->exists($this->exerciseTitle));
-      
-       
+
+
         //delete Exercise
 
- 
+
         //when
         $this->exerciseHandler->delete($this->exerciseTitle);
         //Event is called by assertion directly
@@ -78,61 +80,57 @@ final class HandlerTest extends TestCase
         $this->assertCount(0, $this->exerciseHandler->getExercise($this->exerciseTitle));
     }
 
-   
+
     public function test_SelectFourExercises_Success(): void
     {
-       //given
-        for($i = 0; $i <= 4; $i++){
+        //given
+        for ($i = 0; $i <= 4; $i++) {
             $this->exerciseTitle = "test_DeleteExercise_Success" . $i;
             $this->assertFalse($this->exists($this->exerciseTitle));
-
         }
         //assert 4 exerices
 
- 
-        //when
-        for($i = 0; $i <= 4; $i++){
-            $this->exerciseTitle = "test_DeleteExercise_Success" . $i;
-            $exercise = new exercise(0,$this->exerciseTitle,0);
-            $this->exerciseHandler->create($this->exerciseTitle);
 
+        //when
+        for ($i = 0; $i <= 4; $i++) {
+            $this->exerciseTitle = "test_DeleteExercise_Success" . $i;
+            $exercise = new exercise(0, $this->exerciseTitle, 0);
+            $this->exerciseHandler->create($this->exerciseTitle);
         }
         //then
         $array = array();
-        for($i = 0; $i <= 4; $i++){
-           
-          array_push($array, $this->exerciseHandler->getExercise("testSelectFourExercises" . $i));
-       
-        }
-       
-        $this->assertCount(5, $array);
-        for($i = 0; $i <= 4; $i++){
-            $this->exerciseTitle = "test_DeleteExercise_Success" . $i;
-            $exercise = new exercise(0,$this->exerciseTitle,0);
-            $this->exerciseHandler->delete($this->exerciseTitle);
+        for ($i = 0; $i <= 4; $i++) {
 
+            array_push($array, $this->exerciseHandler->getExercise("testSelectFourExercises" . $i));
+        }
+
+        $this->assertCount(5, $array);
+        for ($i = 0; $i <= 4; $i++) {
+            $this->exerciseTitle = "test_DeleteExercise_Success" . $i;
+            $exercise = new exercise(0, $this->exerciseTitle, 0);
+            $this->exerciseHandler->delete($this->exerciseTitle);
         }
     }
 
-    protected function exists(...$exercises) : bool
+    protected function exists(...$exercises): bool
     {
         $results = $this->exerciseHandler->getExercise(...$exercises);
 
-        if(count($results) > 0) {
-            for($i = 0; $i < count($results); $i++){
-                if ($results[$i]->getTitle() != $exercises[$i]){
+        if (count($results) > 0) {
+            for ($i = 0; $i < count($results); $i++) {
+                if ($results[$i]->getTitle() != $exercises[$i]) {
                     return false;
                 }
             }
             return true;
         } else {
-            return false; 
+            return false;
         }
     }
-   
-    protected function tearDown() : void
+
+    protected function tearDown(): void
     {
-        if($this->exists($this->exerciseTitle)){
+        if ($this->exists($this->exerciseTitle)) {
             $this->exerciseHandler->delete($this->exerciseTitle);
         }
     }
