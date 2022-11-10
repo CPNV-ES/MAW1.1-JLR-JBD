@@ -3,7 +3,7 @@
 require_once  __DIR__ . "/query.php";
 class ExerciseHandler
 {
-   
+
     private static $instance;
     private $query;
     public $handler;
@@ -13,9 +13,9 @@ class ExerciseHandler
         $this->query = new Query();
     }
 
-    public static function getInstance() : ExerciseHandler
+    public static function getInstance(): ExerciseHandler
     {
-        if(is_null(self::$instance)) {
+        if (is_null(self::$instance)) {
             self::$instance = new ExerciseHandler();
         }
         return self::$instance;
@@ -24,13 +24,11 @@ class ExerciseHandler
     /**
      * @param string[]
      */
-    function create($exercises) : void
+    function create($exercises): void
     {
-        try
-        {
+        try {
             $this->query->insert($exercises);
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             throw new DuplicateTitleException();
         }
     }
@@ -38,19 +36,16 @@ class ExerciseHandler
     /**
      * @return Exercise[]
      */
-    function getExercise(...$exercises)  : array
+    function getExercise(...$exercises): array
     {
         return $this->query->select(...$exercises);
     }
-   
-    function delete($exercises) : void
+
+    function delete($exercises): void
     {
-        try
-        {
+        try {
             $this->query->delete($exercises);
-        }
-        catch(PDOException $e)
-        {
+        } catch (PDOException $e) {
             throw new NotFoundException();
         }
     }
@@ -58,13 +53,10 @@ class ExerciseHandler
 
 class ExerciseHandlerException extends Exception
 {
-
 }
 class DuplicateTitleException extends ExerciseHandlerException
 {
-
 }
 class NotFoundException extends ExerciseHandlerException
 {
-
 }
