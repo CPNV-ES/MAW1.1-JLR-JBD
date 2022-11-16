@@ -59,6 +59,7 @@ final class HandlerTest extends TestCase
         //then
         $this->assertTrue($this->exists($exercise->getTitle()));
     }
+
     public function test_DeleteExercise_Success(): void
     {
         //given
