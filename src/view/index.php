@@ -17,7 +17,7 @@
   <div class="container dashboard">
     <section class="row">
       <div class="column">
-        <a class="button answering column" href="">Take an exercise</a>
+        <a class="button answering column" href="/exercises/answering">Take an exercise</a>
       </div>
       <div class="column">
         <a class="button managing column" href="/create">Create an exercise</a>

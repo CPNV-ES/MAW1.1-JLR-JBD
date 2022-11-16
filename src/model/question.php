@@ -9,7 +9,7 @@ class Question
     private String $title;
     private Int $type;
 
-    public function __construct(int $id, String $title, Int $type)
+    public function __construct(int $id, String $title, int $type)
     {
         $this->id = $id;
         $this->title = $title;

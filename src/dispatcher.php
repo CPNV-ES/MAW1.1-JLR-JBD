@@ -43,6 +43,9 @@ function dispatch($bag)
         $bag['handler'] = 'controller/exercises/edit';
         $bag['id_exercise'] = (int)filter_var($matches[0], FILTER_SANITIZE_NUMBER_INT);
     }
+    elseif (preg_match('/^\/exercises/answering$/', $bag['route'])) {
+        $bag['handler'] = 'controller/exercises/index';
+    }
     else {
         $bag['status_code'] = 404;
     }

@@ -86,7 +86,7 @@ class Query
 
     function insertQuestion($idExercise, $title, $type) : void
     {
-        $query = "INSERT INTO questions(title, type) VALUES ('$title', '$type'); INSERT INTO exercises_has_questions(exercises_idExercises,questions_idquestions) VALUES ('$idExercise','')";
+        $query = "INSERT INTO questions(title, type, exercises_idExercises) VALUES ('$title', '$type','$idExercise');";
         $this->connect->execute($query);
     }
 }
