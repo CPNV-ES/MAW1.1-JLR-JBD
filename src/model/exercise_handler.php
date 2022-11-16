@@ -49,6 +49,19 @@ class ExerciseHandler
             throw new NotFoundException();
         }
     }
+    
+    function createQuestion($title, $type) : void
+    {
+        $this->query->insertQuestion($title, $type);
+    }
+
+    /**
+    * @return Question[]
+    */
+    function getQuestion(...$questions)  : array
+    {
+        return $this->query->selectQuestion(...$questions);
+    }
 }
 
 class ExerciseHandlerException extends Exception

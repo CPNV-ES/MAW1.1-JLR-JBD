@@ -20,7 +20,7 @@ class DbConnector
     public function open() : void
     {
         try {
-            $this->dbh = new PDO('mysql:host=10.229.32.60;dbname=maw11', "JON", "");
+            $this->dbh = new PDO('mysql:host=10.229.32.78;dbname=maw11', "JON", "");
             $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             echo 'Échec lors de la connexion : ' . $e->getMessage();

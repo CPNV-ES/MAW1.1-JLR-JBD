@@ -14,7 +14,7 @@ class Query
 
     function insert(string $title) : void
     {
-        $query = "INSERT INTO exercises(Title, state) VALUES ('$title', '0')";
+        $query = "INSERT INTO exercises(title, state) VALUES ('$title', '0')";
         $this->connect->execute($query);
     }
 
@@ -44,6 +44,32 @@ class Query
         return $exercises;
     }
 
+    function selectQuestion(...$args) : array
+    {
+        $questions = array();
+       
+        if($args[0] == null){
+            $query = 'SELECT * FROM questions'; 
+        }else{
+            if(is_string($args[0])){
+                $query = "SELECT * FROM questions WHERE title IN ('".implode("','",$args)."')";
+            }else if(is_numeric($args[0])){
+                $query = "SELECT * FROM questions WHERE idquestions IN (".implode(",",$args).")";
+            }else{
+                throw new Exception('It\'s not a number or a string');
+            }
+        }
+      
+        $result = $this->connect->execute($query)->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($result as $question)
+        {
+            array_push($questions, new Question($question["idquestions"],$question["title"],$question["type"]));
+        }
+       
+        return $questions;
+    }
+
     function delete($exercise) : void
     {
        
@@ -55,6 +81,12 @@ class Query
             throw new Exception('It\'s not a number or a string');
         }
         
+        $this->connect->execute($query);
+    }
+
+    function insertQuestion($idExercise, $title, $type) : void
+    {
+        $query = "INSERT INTO questions(title, type) VALUES ('$title', '$type'); INSERT INTO exercises_has_questions(exercises_idExercises,questions_idquestions) VALUES ('$idExercise','')";
         $this->connect->execute($query);
     }
 }

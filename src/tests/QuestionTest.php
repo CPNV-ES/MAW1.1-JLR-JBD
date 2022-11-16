@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 
+require_once 'src/model/exercise_handler.php';
 require_once 'src/model/question.php';
 
 final class QuestionTest extends TestCase
@@ -22,28 +23,25 @@ final class QuestionTest extends TestCase
     {
         //given
         $questionTitle = "testNominale";
-        $questionResult = "testNominale";
         $questionType = 1;
         $this->exerciseTitle = "test_CreateNominalCaseQuestion_Success";
         $this->assertFalse($this->exists($questionTitle));
 
         //when
-        $question = new Question($questionTitle, $questionResult, $questionType);
-        $this->exerciseHandler->create($question->getName());
+        $question = new Question(0,$questionTitle,$questionType);
+        $this->exerciseHandler->create($question->getTitle());
         //then
-        $this->assertTrue($this->exists($question->getName()));
+        $this->assertTrue($this->exists($question->getTitle()));
     }
-
 
 
     public function test_DeleteExercise_Success(): void
     {
         //given
         $questionTitle = "test_DeleteExercise_SuccessQuestion";
-        $questionResult = "test_DeleteExercise_SuccessQuestion";
         $questionType = 1;
         $this->exerciseTitle = "test_DeleteExercise_Success";
-        $question = new Question($questionTitle, $questionResult, $questionType);
+        $question = new Question(0,$questionTitle,$questionType);
         $this->exerciseHandler->create($questionTitle);
         $this->assertTrue($this->exists($questionTitle));
 
@@ -62,11 +60,10 @@ final class QuestionTest extends TestCase
 
     public function test_SelectFourExercises_Success(): void
     {
-        //given
-
-        $questionResult = "test";
-        $questionType = 1;
-        for ($i = 0; $i <= 4; $i++) {
+       //given
+    
+       $questionType = 1;
+        for($i = 0; $i <= 4; $i++){
             $this->exerciseTitle = "test_DeleteExercise_Success" . $i;
             $questionTitle = "test_DeleteExercise_SuccessQuestion" . $i;
             $this->assertFalse($this->exists($questionTitle));
@@ -77,7 +74,7 @@ final class QuestionTest extends TestCase
         //when
         for ($i = 0; $i <= 4; $i++) {
             $questionTitle = "test_DeleteExercise_SuccessQuestion" . $i;
-            $question = new Question($questionTitle, $questionResult, $questionType);
+            $question = new Question(0,$questionTitle,$questionType);
             $this->exerciseHandler->create($questionTitle);
         }
         //then
@@ -88,16 +85,16 @@ final class QuestionTest extends TestCase
         }
 
         $this->assertCount(5, $array);
-        for ($i = 0; $i <= 4; $i++) {
-            $questionTitle = "test_DeleteExercise_SuccessQuestion" . $i;
-            $question = new Question($questionTitle, $questionResult, $questionType);
+        for($i = 0; $i <= 4; $i++){
+            $questionTitle= "test_DeleteExercise_SuccessQuestion" . $i;
+            $question = new Question(0,$questionTitle,$questionType);
             $this->exerciseHandler->delete($questionTitle);
         }
     }
 
     protected function exists(...$questions): bool
     {
-        $results = $this->exerciseHandler->getQuestions(...$questions);
+        $results = $this->exerciseHandler->getQuestion(...$questions);
 
         if (count($results) > 0) {
             for ($i = 0; $i < count($results); $i++) {

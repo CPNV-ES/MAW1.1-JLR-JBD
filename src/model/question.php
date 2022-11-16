@@ -6,26 +6,28 @@ class Question
 {
 
     private Int $id;
-    private String $name;
-    private String $result;
+    private String $title;
     private Int $type;
 
-    public function __construct(String $name, String $result, Int $type)
+    public function __construct(int $id, String $title, Int $type)
     {
+        $this->id = $id;
+        $this->title = $title;
+        $this->type = $type;
     }
 
-    public function getName(): String
+    public function getId() : int
     {
-        return "";
+        return $this->id;
     }
 
-    public function getResult(): String
+    public function getTitle() : String
     {
-        return "";
+        return $this->title;
     }
 
-    public function getType(): Int
+    public function getType() : Int
     {
-        return 0;
+        return $this->type;
     }
 }
