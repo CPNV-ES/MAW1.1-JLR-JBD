@@ -11,6 +11,25 @@
           <th>Value kind</th>
           <th></th>
         </tr>
+        <?php
+              foreach($bag['data'] as $question){
+                echo '<tr><td>'.$question->getTitle().'</td><td>';
+                switch($question->getType()) {
+                  case 0:
+                    echo 'single_line';
+                    break;
+                  case 1:
+                    echo 'single_line_list';
+                    break;
+                  case 2:
+                    echo 'multi_line';
+                    break;
+                }
+                echo '</td><td><a title="Edit" href="/exercises/fields/'.$question->getId().'/edit">
+                <i class="fa fa-edit"></i></a><a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete" href="/exercises/fields/'.$question->getId().'">
+                <i class="fa fa-trash"></i></a></td></tr>';
+              }
+            ?>
       </thead>
 
       <tbody>

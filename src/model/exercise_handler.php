@@ -62,6 +62,14 @@ class ExerciseHandler
     {
         return $this->query->selectQuestion(...$questions);
     }
+
+    /**
+    * @return Question[]
+    */
+    function getQuestionsFromExercise($exercise)  : array
+    {
+        return $this->query->selectQuestionsFromExercise($exercise);
+    }
 }
 
 class ExerciseHandlerException extends Exception

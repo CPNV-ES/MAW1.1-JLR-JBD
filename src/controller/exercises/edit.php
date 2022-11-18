@@ -1,12 +1,9 @@
 <?php
 require_once SOURCE_DIR.'/model/query.php';
+require_once SOURCE_DIR.'/model/exercise_handler.php';
 
 $query = new Query();
-
-$bag['view'] = 'view/exercises/edit';
-
-var_dump($_POST);
-var_dump($bag['id_exercise']);
+$exerciseHandler = exerciseHandler::getInstance();
 
 if($_POST['field']['label'] != ""){
     if($_POST['field']['value_kind'] < 3){
@@ -14,6 +11,6 @@ if($_POST['field']['label'] != ""){
     }
 }
 
-
-//$query->insertQuestion($bag['id_exercise'], $title, $type);
+$bag['data'] = $exerciseHandler->getQuestionsFromExercise($bag['id_exercise']);
+$bag['view'] = 'view/exercises/edit';
 

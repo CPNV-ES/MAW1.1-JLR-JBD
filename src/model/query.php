@@ -1,6 +1,7 @@
 <?php
 require __DIR__ . "/dbConnector.php";
 require __DIR__ . "/exercise.php";
+require __DIR__ . "/question.php";
 
 class Query
 {
@@ -66,7 +67,32 @@ class Query
         {
             array_push($questions, new Question($question["idquestions"],$question["title"],$question["type"]));
         }
-       
+        return $questions;
+    }
+
+    function selectQuestionsFromExercise($arg) : array
+    {
+        $questions = array();
+
+        if(is_string($arg)){
+            $query = "SELECT questions.idQuestions, questions.title, questions.type FROM exercises 
+INNER JOIN questions ON exercises.idExercises = questions.exercises_idExercises 
+WHERE exercises.title = ".$arg;
+        }else if(is_numeric($arg)){
+            $query = "SELECT questions.idQuestions, questions.title, questions.type FROM exercises 
+INNER JOIN questions ON exercises.idExercises = questions.exercises_idExercises 
+WHERE exercises.idExercises = ".$arg;
+        }else{
+            throw new Exception('It\'s not a number or a string');
+        }
+
+        $result = $this->connect->execute($query)->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($result as $question)
+        {
+            array_push($questions, new Question($question["idQuestions"],$question["title"],$question["type"]));
+        }
+
         return $questions;
     }
 
