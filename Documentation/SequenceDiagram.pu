@@ -1,0 +1,26 @@
+@startuml
+
+actor user as user #black
+participant exerciseHandler as ExerciseHandler <<ExerciseHandler>>
+participant query as Query <<Query>>
+participant connect as DbConnector <<DbConnector>> 
+participant exercise as Exercise <<Exercise>>
+user -> ExerciseHandler : GetExercise()
+ExerciseHandler -> Query : Select()
+Query -> DbConnector : Execute()
+DbConnector->DbConnector : FechAll()
+loop For each 
+DbConnector->Exercise : __Construct()
+Exercise-->DbConnector : Exericse
+end
+DbConnector --> Query : Exercises
+Query --> ExerciseHandler : Exercises
+ExerciseHandler --> user : Exercises
+
+user->ExerciseHandler : Create()
+ExerciseHandler->Query : Insert()
+Query->DbConnector : Execute()
+user->ExerciseHandler : Delete()
+ExerciseHandler->Query : Delete()
+Query->DbConnector : Execute()
+@enduml

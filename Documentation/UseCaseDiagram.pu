@@ -1,0 +1,18 @@
+@startuml
+left to right direction
+actor Guest as guest
+package ExerciseLooper {
+
+  usecase "List Exercise" as ListExercise
+  usecase "Create Exercise" as CreateExercise
+  usecase "Create Question" as CreateQuestion
+  usecase "Delete Exercise" as DeleteExercise
+
+
+
+}
+guest-->ListExercise
+guest-->CreateExercise
+CreateExercise ..>CreateQuestion
+guest-->DeleteExercise
+@enduml

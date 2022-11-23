@@ -1,0 +1,49 @@
+@startuml
+class ExerciseHandler{
+    -Query : query
+    +create(Sring[] Exercise) : void 
+    +getExercise(Sring[] Exercise) : Exercise[]
+    +delete(String:Exercise) : void
+}
+class Query{
+    -dbconnector : DBConnector
+    +insert(String title) : Void
+    +select(string[] args = null) : Exercice[]
+    +delete(Int id) : Void
+}
+class Exercise{
+    -id : Int
+    -title : String
+    -state : Enum
+    -questions : Question[]
+    +Exercise(String title) 
+    +getId() : Int
+    +getTitle() : String
+    +getByTitle() : Exercice
+    +getState() : Int 
+    +getQuestion() : Question[]
+}
+class DBConnector {
+    -dbconnector : DBConnector
+    -DBConnector(string[] params)
+    +getInstance() : DBConnector
+    +open() : Void
+    +close() : Void
+    +execute(Query query) : ObjectPDOStatement
+}
+class Question{
+    -id : Int
+    -name : String
+    -result : String
+    -type: Enum
+    +Question(name, result)
+    +getName() : String
+    +getResult() : String
+    +getType() : Int
+}
+
+ExerciseHandler "1" ..> "1" Query 
+Query "1" --* "1" DBConnector 
+ExerciseHandler "1" ..> "*" Exercise 
+Exercise "*" ..> "*" Question 
+@enduml
