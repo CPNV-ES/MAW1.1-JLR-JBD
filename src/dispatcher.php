@@ -15,7 +15,7 @@ function dispatch($bag)
 
     // If any match defines a 'view', it should use our one and only layout.
     $bag['layout'] = 'view/layout';
-    
+
     //-----------------------------------------------------------------------------
     if (preg_match('/^\/?$/', $bag['route'])) {
         unset($bag['layout']);
@@ -32,7 +32,7 @@ function dispatch($bag)
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises$/', $bag['route'])) {
         $bag['handler'] = 'controller/exercises/index';
-    } 
+    }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/\d+$/', $bag['route'], $matches)) {
         $bag['handler'] = 'controller/exercises/delete';
@@ -43,10 +43,14 @@ function dispatch($bag)
         $bag['handler'] = 'controller/exercises/edit';
         $bag['id_exercise'] = (int)filter_var($matches[0], FILTER_SANITIZE_NUMBER_INT);
     }
+    //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises/answering$/', $bag['route'])) {
         $bag['handler'] = 'controller/exercises/index';
-    }
-    else {
+    } //-----------------------------------------------------------------------------
+    elseif (preg_match('/^\/exercises\/\d+$/', $bag['route'], $matches)) {
+        $bag['handler'] = 'controller/fields/delete';
+        $bag['id_fields'] = (int)filter_var($matches[0], FILTER_SANITIZE_NUMBER_INT);
+    } else {
         $bag['status_code'] = 404;
     }
 
@@ -55,6 +59,7 @@ function dispatch($bag)
 
 //=============================================================================
 // Return the URL for the given named route (the opposite of the dispatcher)
-function route($name) {
-    return '/'.$name;
+function route($name)
+{
+    return '/' . $name;
 }

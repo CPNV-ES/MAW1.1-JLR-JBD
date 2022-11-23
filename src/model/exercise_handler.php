@@ -6,7 +6,6 @@ class ExerciseHandler
 
     private static $instance;
     private $query;
-    public $handler;
 
     protected function __construct()
     {
@@ -49,24 +48,24 @@ class ExerciseHandler
             throw new NotFoundException();
         }
     }
-    
-    function createQuestion($title, $type) : void
+
+    function createQuestion($title, $type): void
     {
         $this->query->insertQuestion($title, $type);
     }
 
     /**
-    * @return Question[]
-    */
-    function getQuestion(...$questions)  : array
+     * @return Question[]
+     */
+    function getQuestion(...$questions): array
     {
         return $this->query->selectQuestion(...$questions);
     }
 
     /**
-    * @return Question[]
-    */
-    function getQuestionsFromExercise($exercise)  : array
+     * @return Question[]
+     */
+    function getQuestionsFromExercise($exercise): array
     {
         return $this->query->selectQuestionsFromExercise($exercise);
     }

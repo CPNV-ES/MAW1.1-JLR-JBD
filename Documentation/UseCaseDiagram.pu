@@ -7,7 +7,7 @@ package ExerciseLooper {
   usecase "Create Exercise" as CreateExercise
   usecase "Create Question" as CreateQuestion
   usecase "Delete Exercise" as DeleteExercise
-
+  usecase "Delete Question" as DeleteQuestion
 
 
 }
@@ -15,4 +15,5 @@ guest-->ListExercise
 guest-->CreateExercise
 CreateExercise ..>CreateQuestion
 guest-->DeleteExercise
+CreateQuestion-->DeleteQuestion
 @enduml

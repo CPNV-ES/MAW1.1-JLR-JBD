@@ -1,15 +1,25 @@
 @startuml
 class ExerciseHandler{
+    {static} -instance : ExerciseHandler 
     -Query : query
+    +getInstance() : ExerciseHandler
     +create(Sring[] Exercise) : void 
     +getExercise(Sring[] Exercise) : Exercise[]
     +delete(String:Exercise) : void
+    +createQuestion(String title, Int type) : void
+    +getQuestion(String[] args) : array
+    +getQuestionsFromExercise(Exercise exercise) : array
+    +deteQuestion(Int id) : void 
 }
 class Query{
     -dbconnector : DBConnector
     +insert(String title) : Void
     +select(string[] args = null) : Exercice[]
     +delete(Int id) : Void
+    +selectQuestion(String[] args) : array
+    +selectQuestionsFromExercise(String[] args) : array
+    +insertQuestion(Int idExercise, String title, Int type) : void
+    +deleteQuestion(Int id) : void
 }
 class Exercise{
     -id : Int
