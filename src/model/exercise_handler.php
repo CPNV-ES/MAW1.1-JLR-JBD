@@ -23,7 +23,7 @@ class ExerciseHandler
     /**
      * @param string[]
      */
-    function create($exercises): void
+    public function create($exercises): void
     {
         try {
             $this->query->insert($exercises);
@@ -35,12 +35,12 @@ class ExerciseHandler
     /**
      * @return Exercise[]
      */
-    function getExercise(...$exercises): array
+    public function getExercise(...$exercises): array
     {
         return $this->query->select(...$exercises);
     }
 
-    function delete($exercises): void
+    public function delete($exercises): void
     {
         try {
             $this->query->delete($exercises);
@@ -49,7 +49,7 @@ class ExerciseHandler
         }
     }
 
-    function createQuestion($title, $type): void
+    public function createQuestion($title, $type): void
     {
         $this->query->insertQuestion($title, $type);
     }
@@ -57,7 +57,7 @@ class ExerciseHandler
     /**
      * @return Question[]
      */
-    function getQuestion(...$questions): array
+    public function getQuestion(...$questions): array
     {
         return $this->query->selectQuestion(...$questions);
     }
@@ -65,9 +65,17 @@ class ExerciseHandler
     /**
      * @return Question[]
      */
-    function getQuestionsFromExercise($exercise): array
+    public function getQuestionsFromExercise($exercise): array
     {
         return $this->query->selectQuestionsFromExercise($exercise);
+    }
+    public function deleteQuestion(Int $id): void
+    {
+        $this->query->deleteQuestion($id);
+    }
+    public function getExerciseFromQuestion(Int $exercise): Int
+    {
+        return $this->query->getExerciseFromQuestion($exercise);
     }
 }
 

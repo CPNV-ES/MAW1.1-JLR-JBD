@@ -10,6 +10,7 @@ class ExerciseHandler{
     +getQuestion(String[] args) : array
     +getQuestionsFromExercise(Exercise exercise) : array
     +deteQuestion(Int id) : void 
+    +getExerciseFromQuestion(Int id_question) : Exercise
 }
 class Query{
     -dbconnector : DBConnector
@@ -20,6 +21,7 @@ class Query{
     +selectQuestionsFromExercise(String[] args) : array
     +insertQuestion(Int idExercise, String title, Int type) : void
     +deleteQuestion(Int id) : void
+    +getExerciseFromQuestion(Int id_question) : Exercise
 }
 class Exercise{
     -id : Int

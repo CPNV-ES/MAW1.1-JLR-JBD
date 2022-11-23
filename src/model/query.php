@@ -112,4 +112,18 @@ WHERE exercises.idExercises = " . $arg;
         $query = "INSERT INTO questions(title, type, exercises_idExercises) VALUES ('$title', '$type','$idExercise');";
         $this->connect->execute($query);
     }
+    function deleteQuestion(Int $id): void
+    {
+        $query = "DELETE FROM questions WHERE idquestions = '$id'";
+        $this->connect->execute($query);
+    }
+    function getExerciseFromQuestion(Int $id): Int
+    {
+        $query = "SELECT questions.exercises_idExercises  FROM exercises 
+INNER JOIN questions ON exercises.idExercises = questions.exercises_idExercises 
+WHERE questions.idquestions  = " . $id;
+        $result = $this->connect->execute($query)->fetch();
+
+        return $result['exercises_idExercises'];
+    }
 }
