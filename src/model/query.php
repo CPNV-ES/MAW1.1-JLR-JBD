@@ -107,16 +107,25 @@ WHERE exercises.idExercises = " . $arg;
         $this->connect->execute($query);
     }
 
-    function insertQuestion($idExercise, $title, $type): void
+    function insertQuestion($idExercise, $title, $type) : void
     {
         $query = "INSERT INTO questions(title, type, exercises_idExercises) VALUES ('$title', '$type','$idExercise');";
         $this->connect->execute($query);
     }
-    function deleteQuestion(Int $id): void
+    
+    function deleteQuestion($question) : void
     {
-        $query = "DELETE FROM questions WHERE idquestions = '$id'";
+        if(is_string($question)) {
+            $query = "DELETE FROM questions WHERE title = '$question'";
+        }else if(is_numeric($question)) {
+            $query = "DELETE FROM questions WHERE idQuestions = '$question'";
+        }else{
+            throw new Exception('It\'s not a number or a string');
+        }
+        
         $this->connect->execute($query);
     }
+
     function getExerciseFromQuestion(Int $id): Int
     {
         $query = "SELECT questions.exercises_idExercises  FROM exercises 

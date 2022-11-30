@@ -44,13 +44,17 @@ function dispatch($bag)
         $bag['id_exercise'] = (int)filter_var($matches[0], FILTER_SANITIZE_NUMBER_INT);
     }
     //-----------------------------------------------------------------------------
-    elseif (preg_match('/^\/exercises\/answering$/', $bag['route'])) {
-        $bag['handler'] = 'controller/exercises/answering';
+    elseif (preg_match('/^\/exercises/answering$/', $bag['route'])) {
+        $bag['handler'] = 'controller/exercises/index';
     }
     //-----------------------------------------------------------------------------
-    elseif (preg_match('/^\/exercises\/fields\/\d+$/', $bag['route'], $matches)) {
+    elseif (preg_match('/^\/exercises\/\d+\/fields\/\d+$/', $bag['route'], $matches)) {
         $bag['handler'] = 'controller/fields/delete';
-        $bag['id_field'] = (int)filter_var($matches[0], FILTER_SANITIZE_NUMBER_INT);
+        
+        preg_match_all('!\d+!', $matches[0], $numbers);
+
+        $bag['id_exercise'] = (int)filter_var($numbers[0][0], FILTER_SANITIZE_NUMBER_INT);
+        $bag['id_field'] = (int)filter_var($numbers[0][1], FILTER_SANITIZE_NUMBER_INT);
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/(?P<exercise>\d+)\/fields\/(?P<field>\d+)\/edit$/', $bag['route'], $matches)) {
