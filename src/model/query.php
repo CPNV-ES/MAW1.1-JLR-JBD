@@ -126,4 +126,9 @@ WHERE questions.idquestions  = " . $id;
 
         return $result['exercises_idExercises'];
     }
+    function updateQuestion($id, $title, $type)
+    {
+        $query = "UPDATE questions SET title = '$title', type = '$type' WHERE idquestions = '$id'";
+        $this->connect->execute($query);
+    }
 }

@@ -53,7 +53,10 @@ class ExerciseHandler
     {
         $this->query->insertQuestion($title, $type);
     }
-
+    public function updateQuestion($id, $title, $type): void
+    {
+        $this->query->updateQuestion($id, $title, $type);
+    }
     /**
      * @return Question[]
      */
