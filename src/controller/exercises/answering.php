@@ -5,6 +5,12 @@ $handler = ExerciseHandler::getInstance();
 
 $bag['view'] = 'view/exercises/answering';
 
-$bag['exercises'] = $handler->getExercise();
+$bag['exercises'] = [];
+
+foreach($handler->getExercise() as $exercise){
+    if($exercise->getState() == 1){
+        array_push($bag['exercises'],$exercise);
+    }
+}
 
 return $bag;
