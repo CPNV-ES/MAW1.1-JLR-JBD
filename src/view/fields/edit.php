@@ -10,7 +10,7 @@
 
   <h1>Editing Field</h1>
 
-  <form action="/exercises/<?= $bag['id_exercise']   ?>/fields/<?= $bag['data'][0]->getId() ?>" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="gWH9ByBa+6oonu3EmJciT1YdItdoWjQh47Auk+Pd38yULNvjONUBpOtBd/FLkShttjupA2JBBj053W0E2KWkKg==">
+  <form action="/exercises/<?= $bag['id_exercise']   ?>/fields/<?= $bag['data'][0]->getId() ?>/update" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="gWH9ByBa+6oonu3EmJciT1YdItdoWjQh47Auk+Pd38yULNvjONUBpOtBd/FLkShttjupA2JBBj053W0E2KWkKg==">
 
       <div class="field">
           <label for="field_label"><?= $bag['data'][0]->getTitle() ?> </label>

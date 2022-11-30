@@ -44,13 +44,13 @@ function dispatch($bag)
         $bag['id_exercise'] = (int)filter_var($matches[0], FILTER_SANITIZE_NUMBER_INT);
     }
     //-----------------------------------------------------------------------------
-    elseif (preg_match('/^\/exercises/answering$/', $bag['route'])) {
-        $bag['handler'] = 'controller/exercises/index';
+    elseif (preg_match('/^\/exercises\/answering$/', $bag['route'])) {
+        $bag['handler'] = 'controller/exercises/answering';
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/\d+\/fields\/\d+$/', $bag['route'], $matches)) {
         $bag['handler'] = 'controller/fields/delete';
-        
+
         preg_match_all('!\d+!', $matches[0], $numbers);
 
         $bag['id_exercise'] = (int)filter_var($numbers[0][0], FILTER_SANITIZE_NUMBER_INT);
@@ -64,12 +64,11 @@ function dispatch($bag)
         $bag['id_field'] = (int)filter_var($matches["field"], FILTER_SANITIZE_NUMBER_INT);
     }
     //-----------------------------------------------------------------------------
-    elseif (preg_match('/^\/exercises\/(?P<exercise>\d+)\/fields\/(?P<field>\d+)$/', $bag['route'], $matches)) {
+    elseif (preg_match('/^\/exercises\/(?P<exercise>\d+)\/fields\/(?P<field>\d+)\/update$/', $bag['route'], $matches)) {
         $bag['handler'] = 'controller/fields/edit';
 
         $bag['id_exercise'] = (int)filter_var($matches["exercise"], FILTER_SANITIZE_NUMBER_INT);
-        echo "AWDWADWAD";
-        var_dump($bag['id_exercise']);
+
         $bag['id_field'] = (int)filter_var($matches["field"], FILTER_SANITIZE_NUMBER_INT);
     } else {
         $bag['status_code'] = 404;
