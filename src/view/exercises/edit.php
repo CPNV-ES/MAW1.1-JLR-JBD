@@ -26,7 +26,7 @@
               break;
           }
           echo '</td><td><a title="Edit" href="/exercises/' . $bag['id_exercise'] . '/fields/' . $question->getId() . '/edit">
-                <i class="fa fa-edit"></i></a><a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete" href="/exercises/fields/' . $question->getId() . '">
+                <i class="fa fa-edit"></i></a><a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete" href="/exercises/'.$bag['id_exercise'] .'/fields/' . $question->getId() . '">
                 <i class="fa fa-trash"></i></a></td></tr>';
         }
         ?>

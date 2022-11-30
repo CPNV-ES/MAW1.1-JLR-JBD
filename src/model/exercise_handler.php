@@ -49,7 +49,7 @@ class ExerciseHandler
         }
     }
 
-    public function createQuestion($title, $type): void
+    function createQuestion($title, $type) : void
     {
         $this->query->insertQuestion($title, $type);
     }
@@ -69,10 +69,16 @@ class ExerciseHandler
     {
         return $this->query->selectQuestionsFromExercise($exercise);
     }
-    public function deleteQuestion(Int $id): void
+
+    function deleteQuestion($question): void
     {
-        $this->query->deleteQuestion($id);
+        try {
+            $this->query->deleteQuestion($question);
+        } catch (PDOException $e) {
+            throw new NotFoundException();
+        }
     }
+
     public function getExerciseFromQuestion(Int $exercise): Int
     {
         return $this->query->getExerciseFromQuestion($exercise);
