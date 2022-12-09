@@ -8,9 +8,14 @@ $bag['view'] = 'view/results/index';
 
 $bag['answers'] = $handler->getAnswersFromExercise($bag['id_exercise']);
 $bag['questions'] = $handler->getQuestionsFromExercise($bag['id_exercise']);
+
 foreach ($bag['answers'] as $answer) {
-    $results += $handler->getResultsFromAnswer($answer->getId());
+
+
+    $result = $handler->getResultsFromAnswer($answer[0]->getId());
+    array_push($results, $result);
 }
-var_dump($results);
+
 $bag['results'] = $results;
+
 return $bag;

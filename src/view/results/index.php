@@ -39,27 +39,21 @@
 
             <tbody>
 
+                <?php $index = 0; ?>
+                <?php foreach ($bag['results'] as $result) : ?>
 
-                <?php foreach ($bag['answers'] as $answer) : ?>
                     <tr>
-                        <td><a href='https://stormy-plateau-54488.herokuapp.com/exercises/430/fulfillments/598'><?= $answer->getCreateDate() ?></a></td>
 
-
-
-
-                        <?php foreach ($bag['results'] as $result) : ?>
-                            <td><a href='https://stormy-plateau-54488.herokuapp.com/exercises/430/fulfillments/598'><i class="fa fa-check short"></i></a></td>
-
-
-
+                        <td><a href='https://stormy-plateau-54488.herokuapp.com/exercises/430/fulfillments/598'><?= $bag['answers'][$index][0]->getCreateDate() ?></a></td>
+                        <?php foreach ($result as $selfResult) : ?>
+                            <?php if ($selfResult->getResult() != "") : ?>
+                                <td><a href='https://stormy-plateau-54488.herokuapp.com/exercises/430/fulfillments/598'><i class="fa fa-check short"></i></a></td>
+                            <?php else : ?>
+                                <td><a href='https://stormy-plateau-54488.herokuapp.com/exercises/430/fulfillments/598'><i class="fa fa-times empty"></i></a></td>
+                            <?php endif; ?>
                         <?php endforeach; ?>
-                        <?php for ($i = 0; $i < count($bag['questions']) - count($bag['results']); $i++) : ?>
-                            <td><a href='https://stormy-plateau-54488.herokuapp.com/exercises/430/fulfillments/598'><i class="fa fa-times empty"></i></a></td>
-
-
-
-                        <?php endfor; ?>
                     </tr>
+                    <?php $index++; ?>
                 <?php endforeach; ?>
             </tbody>
         </table>

@@ -145,6 +145,7 @@ WHERE questions.idquestions  = " . $id;
     {
         $answers =  array();
         $questions = $this->selectQuestionsFromExercise($id);
+
         foreach ($questions as $question) {
 
             $query = "SELECT answers.idAnswers,answers.createDate  FROM answers 
@@ -155,10 +156,12 @@ WHERE questions.idquestions  = " . $id;
 
             $result = $this->connect->execute($query)->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Answer', [0, ""]);
 
-            if (count($result) > 0) {
-                $answers += $result;
+
+            if (!in_array($result, $answers) && !empty($result)) {
+                array_push($answers, $result);
             }
         }
+
         return $answers;
     }
     function getResultsFromAnswer(Int $id): array
@@ -166,11 +169,11 @@ WHERE questions.idquestions  = " . $id;
 
 
         $results = array();
-        $query = "SELECT results.idResults,results.result  FROM answers 
+        $query = "SELECT results.idResults,results.result, results.Answers_idAnswers  FROM answers 
             INNER JOIN results ON results.Answers_idAnswers = answers.idAnswers 
             WHERE results.Answers_idAnswers = " . $id;
 
-        $result = $this->connect->execute($query)->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Result', [0, ""]);
+        $result = $this->connect->execute($query)->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Result', [0, "", 0]);
 
         if (count($result) > 0) {
             $results += $result;
