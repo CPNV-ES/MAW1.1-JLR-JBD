@@ -166,9 +166,9 @@ WHERE questions.idquestions  = " . $id;
 
 
         $results = array();
-        $query = "SELECT results.idResults,results.result  FROM results_has_questions 
-            INNER JOIN results ON results_has_questions.Results_idResults = results.idResults 
-            WHERE results_has_questions.Answers_idAnswers = " . $id;
+        $query = "SELECT results.idResults,results.result  FROM answers 
+            INNER JOIN results ON results.Answers_idAnswers = answers.idAnswers 
+            WHERE results.Answers_idAnswers = " . $id;
 
         $result = $this->connect->execute($query)->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Result', [0, ""]);
 
