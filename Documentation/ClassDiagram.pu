@@ -59,3 +59,4 @@ Query "1" --* "1" DBConnector
 ExerciseHandler "1" ..> "*" Exercise 
 Exercise "*" ..> "*" Question 
 @enduml
+

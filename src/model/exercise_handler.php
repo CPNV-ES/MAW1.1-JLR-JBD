@@ -49,7 +49,7 @@ class ExerciseHandler
         }
     }
 
-    function createQuestion($title, $type) : void
+    function createQuestion($title, $type): void
     {
         $this->query->insertQuestion($title, $type);
     }
@@ -85,6 +85,14 @@ class ExerciseHandler
     public function getExerciseFromQuestion(Int $exercise): Int
     {
         return $this->query->getExerciseFromQuestion($exercise);
+    }
+    public function getAnswersFromExercise(Int $exercise): array
+    {
+        return $this->query->getAnswersFromExercise($exercise);
+    }
+    public function getResultsFromAnswer(Int $answer): array
+    {
+        return $this->query->getResultsFromAnswer($answer);
     }
 }
 

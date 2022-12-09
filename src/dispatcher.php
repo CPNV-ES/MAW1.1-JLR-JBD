@@ -71,6 +71,12 @@ function dispatch($bag)
         $bag['id_exercise'] = (int)filter_var($matches["exercise"], FILTER_SANITIZE_NUMBER_INT);
 
         $bag['id_field'] = (int)filter_var($matches["field"], FILTER_SANITIZE_NUMBER_INT);
+    }
+    //-----------------------------------------------------------------------------
+    elseif (preg_match('/^\/exercises\/(?P<exercise>\d+)\/results$/', $bag['route'], $matches)) {
+        $bag['handler'] = 'controller/results/index';
+
+        $bag['id_exercise'] = (int)filter_var($matches["exercise"], FILTER_SANITIZE_NUMBER_INT);
     } else {
         $bag['status_code'] = 404;
     }

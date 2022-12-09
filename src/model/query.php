@@ -2,7 +2,8 @@
 require __DIR__ . "/dbConnector.php";
 require __DIR__ . "/exercise.php";
 require __DIR__ . "/question.php";
-
+require __DIR__ . "/answer.php";
+require __DIR__ . "/result.php";
 class Query
 {
 
@@ -107,22 +108,22 @@ WHERE exercises.idExercises = " . $arg;
         $this->connect->execute($query);
     }
 
-    function insertQuestion($idExercise, $title, $type) : void
+    function insertQuestion($idExercise, $title, $type): void
     {
         $query = "INSERT INTO questions(title, type, exercises_idExercises) VALUES ('$title', '$type','$idExercise');";
         $this->connect->execute($query);
     }
-    
-    function deleteQuestion($question) : void
+
+    function deleteQuestion($question): void
     {
-        if(is_string($question)) {
+        if (is_string($question)) {
             $query = "DELETE FROM questions WHERE title = '$question'";
-        }else if(is_numeric($question)) {
+        } else if (is_numeric($question)) {
             $query = "DELETE FROM questions WHERE idQuestions = '$question'";
-        }else{
+        } else {
             throw new Exception('It\'s not a number or a string');
         }
-        
+
         $this->connect->execute($query);
     }
 
@@ -139,5 +140,42 @@ WHERE questions.idquestions  = " . $id;
     {
         $query = "UPDATE questions SET title = '$title', type = '$type' WHERE idquestions = '$id'";
         $this->connect->execute($query);
+    }
+    function getAnswersFromExercise(Int $id): array
+    {
+        $answers =  array();
+        $questions = $this->selectQuestionsFromExercise($id);
+        foreach ($questions as $question) {
+
+            $query = "SELECT answers.idAnswers,answers.createDate  FROM answers 
+            INNER JOIN results ON results.Answers_idAnswers = answers.idAnswers
+            INNER JOIN results_has_questions ON results_has_questions.Results_idResults = results.idResults 
+            INNER JOIN questions ON results_has_questions.questions_idquestions = questions.idquestions
+            WHERE questions.idquestions = " . $question->getId();
+
+            $result = $this->connect->execute($query)->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Answer', [0, ""]);
+
+            if (count($result) > 0) {
+                $answers += $result;
+            }
+        }
+        return $answers;
+    }
+    function getResultsFromAnswer(Int $id): array
+    {
+
+
+        $results = array();
+        $query = "SELECT results.idResults,results.result  FROM results_has_questions 
+            INNER JOIN results ON results_has_questions.Results_idResults = results.idResults 
+            WHERE results_has_questions.Answers_idAnswers = " . $id;
+
+        $result = $this->connect->execute($query)->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Result', [0, ""]);
+
+        if (count($result) > 0) {
+            $results += $result;
+        }
+
+        return $results;
     }
 }
