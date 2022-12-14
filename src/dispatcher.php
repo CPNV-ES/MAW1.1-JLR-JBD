@@ -45,7 +45,6 @@ function dispatch($bag)
     }
     //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/answering+$/', $bag['route'])) {
-
         $bag['handler'] = 'controller/exercises/answering';
     }
     //-----------------------------------------------------------------------------
@@ -77,6 +76,12 @@ function dispatch($bag)
         $bag['handler'] = 'controller/results/index';
 
         $bag['id_exercise'] = (int)filter_var($matches["exercise"], FILTER_SANITIZE_NUMBER_INT);
+    }
+    //-----------------------------------------------------------------------------
+    elseif (preg_match('/^\/exercises\/\d+\/fulfillments\/new$/', $bag['route'], $matches)) {
+        $bag['handler'] = 'controller/results/new';
+
+        $bag['id_exercise'] = (int)filter_var($matches[0], FILTER_SANITIZE_NUMBER_INT);
     } else {
         $bag['status_code'] = 404;
     }

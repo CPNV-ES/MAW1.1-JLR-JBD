@@ -17,6 +17,6 @@
     <main class="container">
       <?= $content ?>
     </main>
-    <script src="/js/test.js"></script>
+    <!--<script src="/js/test.js"></script>-->
   </body>
 </html>

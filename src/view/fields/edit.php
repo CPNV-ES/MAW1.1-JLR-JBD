@@ -1,12 +1,4 @@
-  <title>ExerciseLooper</title>
-  <meta name="csrf-param" content="authenticity_token">
-  <meta name="csrf-token" content="gWH9ByBa+6oonu3EmJciT1YdItdoWjQh47Auk+Pd38yULNvjONUBpOtBd/FLkShttjupA2JBBj053W0E2KWkKg==">
-
-
-  <link rel="stylesheet" media="all" href="./ExerciseLooper_files/application-264507a893987846393b8514969b89293817c54265354e63e6ab61fb46193f89.css">
-  <script src="./ExerciseLooper_files/application-212289bcba525f2374cdbd70755ea38f2cfdd35d479e9638fae0b2832fac5dac.js.téléchargement"></script>
-
-
+<?php $title = "ExerciseLooper" ?>
 
   <h1>Editing Field</h1>
 

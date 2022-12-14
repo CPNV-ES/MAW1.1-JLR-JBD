@@ -1,5 +1,4 @@
 <?php
-require_once SOURCE_DIR . '/model/query.php';
 require_once SOURCE_DIR . '/model/exercise_handler.php';
 
 $handler = ExerciseHandler::getInstance();
