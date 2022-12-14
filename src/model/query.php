@@ -181,6 +181,7 @@ WHERE questions.idquestions  = " . $id;
 
         return $results;
     }
+
     public function getResultsFromQuestion(Int $id): array
     {
         $results = array();
@@ -197,11 +198,29 @@ WHERE questions.idquestions  = " . $id;
 
         return $results;
     }
+
     public function getAnswer(Int $id): array
     {
         $query = "SELECT * FROM answers 
         WHERE answers.idanswers  = " . $id;
         $result = $this->connect->execute($query)->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Answer', [0, ""]);
         return $result;
+    }
+
+    function insertAnswer ($answers)
+    {
+        $query = "INSERT INTO answers(createDate) VALUES ('". date("Y-m-d H:i:s")."');";
+        $this->connect->execute($query);
+        $id = $this->connect->lastInsertId();
+
+        foreach($answers as $key => $answer){
+            $query = "INSERT INTO results(Result, Answers_idAnswers) VALUES ('$answer', '$id');";
+            $this->connect->execute($query);
+            $idAnswer = $this->connect->lastInsertId();
+
+            $query = "INSERT INTO results_has_questions(Results_idResults,questions_idquestions) VALUES ('$idAnswer','$key');";
+            $this->connect->execute($query);
+        }
+        
     }
 }

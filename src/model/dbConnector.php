@@ -39,4 +39,9 @@ class DbConnector
     {
         $this->dbh = null;
     }
+
+    public function lastInsertId()
+    {
+        return $this->dbh->lastInsertId();
+    }
 }
