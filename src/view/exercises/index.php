@@ -39,7 +39,7 @@
         <?php
         foreach ($bag['exercises'] as $exercise) {
           if ($exercise->getState() == 1) {
-            echo '<tr><td>' . $exercise->getTitle() . '</td><td><a data-confirm="Are you sure?" title="Edit" rel="nofollow" data-method="edit" href="exercises/' . $exercise->getId() . '/results"'  . '><i class="fa fa-chart-bar"></i></a></td></tr>';
+            echo '<tr><td>' . $exercise->getTitle() . '</td><td><a title="Edit" rel="nofollow" data-method="edit" href="exercises/' . $exercise->getId() . '/results"'  . '><i class="fa fa-chart-bar"></i></a></td></tr>';
           }
         }
         ?>

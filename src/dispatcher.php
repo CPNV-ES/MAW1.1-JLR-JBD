@@ -78,10 +78,25 @@ function dispatch($bag)
         $bag['id_exercise'] = (int)filter_var($matches["exercise"], FILTER_SANITIZE_NUMBER_INT);
     }
     //-----------------------------------------------------------------------------
+
     elseif (preg_match('/^\/exercises\/\d+\/fulfillments\/new$/', $bag['route'], $matches)) {
         $bag['handler'] = 'controller/results/new';
 
         $bag['id_exercise'] = (int)filter_var($matches[0], FILTER_SANITIZE_NUMBER_INT);
+    }
+    //-----------------------------------------------------------------------------
+    elseif (preg_match('/^\/exercises\/(?P<exercise>\d+)\/results\/(?P<question>\d+)$/', $bag['route'], $matches)) {
+        $bag['handler'] = 'controller/results/question';
+
+        $bag['id_exercise'] = (int)filter_var($matches["exercise"], FILTER_SANITIZE_NUMBER_INT);
+        $bag['id_question'] = (int)filter_var($matches["question"], FILTER_SANITIZE_NUMBER_INT);
+    }
+    //-----------------------------------------------------------------------------
+    elseif (preg_match('/^\/exercises\/(?P<exercise>\d+)\/answers\/(?P<answer>\d+)$/', $bag['route'], $matches)) {
+        $bag['handler'] = 'controller/results/answer';
+
+        $bag['id_exercise'] = (int)filter_var($matches["exercise"], FILTER_SANITIZE_NUMBER_INT);
+        $bag['id_answer'] = (int)filter_var($matches["answer"], FILTER_SANITIZE_NUMBER_INT);
     } else {
         $bag['status_code'] = 404;
     }

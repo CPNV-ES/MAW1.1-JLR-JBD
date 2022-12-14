@@ -94,6 +94,14 @@ class ExerciseHandler
     {
         return $this->query->getResultsFromAnswer($answer);
     }
+    public function getResultsFromQuestion(Int $question)
+    {
+        return $this->query->getResultsFromQuestion($question);
+    }
+    public function getAnswer(Int $answer)
+    {
+        return $this->query->getAnswer($answer);
+    }
 }
 
 class ExerciseHandlerException extends Exception

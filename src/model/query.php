@@ -181,4 +181,27 @@ WHERE questions.idquestions  = " . $id;
 
         return $results;
     }
+    public function getResultsFromQuestion(Int $id): array
+    {
+        $results = array();
+        $query = "SELECT results.idResults,results.result, results.Answers_idAnswers  FROM results 
+            INNER JOIN results_has_questions ON results_has_questions.Results_idResults = results.idResults
+            INNER JOIN questions ON results_has_questions.questions_idquestions = questions.idquestions
+            WHERE questions.idquestions  = " . $id;
+
+        $result = $this->connect->execute($query)->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Result', [0, "", 0]);
+
+        if (count($result) > 0) {
+            $results += $result;
+        }
+
+        return $results;
+    }
+    public function getAnswer(Int $id): array
+    {
+        $query = "SELECT * FROM answers 
+        WHERE answers.idanswers  = " . $id;
+        $result = $this->connect->execute($query)->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Answer', [0, ""]);
+        return $result;
+    }
 }
