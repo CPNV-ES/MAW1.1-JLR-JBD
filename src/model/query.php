@@ -223,4 +223,10 @@ WHERE questions.idquestions  = " . $id;
         }
         
     }
+
+    function Answering($id)
+    {
+        $query = "UPDATE exercises SET state = 1 WHERE idExercises = $id";
+        $this->connect->execute($query);
+    }
 }

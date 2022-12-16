@@ -107,6 +107,11 @@ class ExerciseHandler
     {
         $this->query->insertAnswer($answers);
     }
+
+    public function Answering ($id)
+    {
+        $this->query->Answering($id);
+    }
 }
 
 class ExerciseHandlerException extends Exception

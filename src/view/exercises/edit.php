@@ -36,7 +36,7 @@
       </tbody>
     </table>
 
-    <a data-confirm="Are you sure? You won't be able to further edit this exercise" class="button" rel="nofollow" data-method="put" href=""><i class="fa fa-comment"></i> Complete and be ready for answers</a>
+    <a data-confirm="Are you sure? You won't be able to further edit this exercise" class="button" data-method="put" href="/exercises/save/<?= $bag['id_exercise'] ?>"><i class="fa fa-comment"></i> Complete and be ready for answers</a>
 
   </section>
   <section class="column">
