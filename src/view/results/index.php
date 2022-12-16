@@ -26,16 +26,16 @@
         <tbody>
 
             <?php $index = 0; ?>
-            <?php foreach ($bag['results'] as $result) : ?>
+            <?php foreach ($bag['answers'][0] as $answer) : ?>
 
                 <tr>
 
-                    <td><a href='/exercises/<?= $bag['id_exercise'] ?>/answers/<?= $bag['answers'][$index][0]->getId() ?>'><?= $bag['answers'][$index][0]->getCreateDate() ?></a></td>
-                    <?php foreach ($result as $selfResult) : ?>
+                    <td><a href='/exercises/<?= $bag['id_exercise'] ?>/answers/<?= $answer->getId() ?>'><?= $answer->getCreateDate() ?></a></td>
+                    <?php foreach ($bag['results'][0] as $selfResult) : ?>
                         <?php if ($selfResult->getResult() != "") : ?>
-                            <td><a href='/exercises/<?= $bag['id_exercise'] ?>/fulfillments/<?= $selfResult->getId() ?>'><i class="fa fa-check short"></i></a></td>
+                            <td><i class="fa fa-check short"></i></a></td>
                         <?php else : ?>
-                            <td><a href='/exercises/<?= $bag['id_exercise'] ?>/fulfillments/<?= $selfResult->getId() ?>'><i class="fa fa-times empty"></i></a></td>
+                            <td><i class="fa fa-times empty"></i></a></td>
                         <?php endif; ?>
                     <?php endforeach; ?>
                 </tr>

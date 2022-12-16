@@ -23,17 +23,18 @@
         <tbody>
 
             <?php $index = 0; ?>
-            <?php foreach ($bag['results'] as $result) : ?>
+            <?php foreach ($bag['answers'][0] as $answer) : ?>
 
                 <tr>
 
-                    <td><a href='/exercises/<?= $bag['id_exercise'] ?>/answers/<?= $bag['answers'][$index][0]->getId() ?>'><?= $bag['answers'][$index][0]->getCreateDate() ?></a></td>
+                    <td><a href='/exercises/<?= $bag['id_exercise'] ?>/answers/<?= $answer->getId() ?>'><?= $answer->getCreateDate() ?></a></td>
 
 
-                    <?php if ($result->getResult() != "") : ?>
-                        <td><a href='/exercises/<?= $bag['id_exercise'] ?>/fulfillments/<?= $result->getId() ?>'><i class="fa fa-check short"></i></a></td>
+
+                    <?php if ($bag['results'][$index]->getResult() != "") : ?>
+                        <td><i class="fa fa-check short"></i></a></td>
                     <?php else : ?>
-                        <td><a href='/exercises/<?= $bag['id_exercise'] ?>/fulfillments/<?= $result->getId() ?>'><i class="fa fa-times empty"></i></a></td>
+                        <td><i class="fa fa-times empty"></i></a></td>
                     <?php endif; ?>
 
                 </tr>
