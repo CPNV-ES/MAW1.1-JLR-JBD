@@ -112,6 +112,11 @@ class ExerciseHandler
     {
         $this->query->Answering($id);
     }
+
+    public function Close ($id)
+    {
+        $this->query->Close($id);
+    }
 }
 
 class ExerciseHandlerException extends Exception

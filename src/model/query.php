@@ -229,4 +229,10 @@ WHERE questions.idquestions  = " . $id;
         $query = "UPDATE exercises SET state = 1 WHERE idExercises = $id";
         $this->connect->execute($query);
     }
+
+    function Close($id)
+    {
+        $query = "UPDATE exercises SET state = 2 WHERE idExercises = $id";
+        $this->connect->execute($query);
+    }
 }

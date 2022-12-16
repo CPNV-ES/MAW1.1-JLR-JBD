@@ -16,7 +16,12 @@
 
         foreach ($bag['exercises'] as $exercise) {
           if ($exercise->getState() == 0) {
-            echo '<tr><td>' . $exercise->getTitle() . '</td><td><a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete" href="exercises/' . $exercise->getId() . '"'  . '><i class="fa fa-trash"></i></a></td></tr>';
+            echo '<tr><td>' . $exercise->getTitle() . '</td><td>
+            <a title="Be ready for answers" rel="nofollow" data-method="put"
+            href="exercises/save/'.$exercise->getId().'"><i class="fa fa-comment"></i></a>
+            <a data-confirm="Are you sure?" 
+            title="Destroy" rel="nofollow" data-method="delete" href="exercises/' . $exercise->getId() . '"
+            '  . '><i class="fa fa-trash"></i></a></td></tr>';
           }
         }
         ?>
@@ -39,7 +44,11 @@
         <?php
         foreach ($bag['exercises'] as $exercise) {
           if ($exercise->getState() == 1) {
-            echo '<tr><td>' . $exercise->getTitle() . '</td><td><a title="Edit" rel="nofollow" data-method="edit" href="exercises/' . $exercise->getId() . '/results"'  . '><i class="fa fa-chart-bar"></i></a></td></tr>';
+            echo '<tr><td>' . $exercise->getTitle() . '</td><td>
+            <a title="Edit" rel="nofollow" data-method="edit" href="exercises/' . $exercise->getId() . '/results"'  . '>
+            <i class="fa fa-chart-bar"></i></a>
+            <a title="Close" rel="nofollow" data-method="put" href="exercises/close/'.$exercise->getId().'">
+            <i class="fa fa-minus-circle"></i></a></td></tr>';
           }
         }
         ?>

@@ -78,6 +78,12 @@ function dispatch($bag)
         $bag['id_exercise'] = (int)filter_var($matches[0], FILTER_SANITIZE_NUMBER_INT);
     }
     //-----------------------------------------------------------------------------
+    elseif (preg_match('/^\/exercises\/close\/\d+$/', $bag['route'], $matches)) {
+        $bag['handler'] = 'controller/exercises/close';
+
+        $bag['id_exercise'] = (int)filter_var($matches[0], FILTER_SANITIZE_NUMBER_INT);
+    }
+    //-----------------------------------------------------------------------------
     elseif (preg_match('/^\/exercises\/(?P<exercise>\d+)\/results$/', $bag['route'], $matches)) {
         $bag['handler'] = 'controller/results/index';
 
