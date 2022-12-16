@@ -71,19 +71,13 @@
         <?php
         foreach ($bag['exercises'] as $exercise) {
           if ($exercise->getState() == 2) {
-            echo '<tr><td>' . $exercise->getTitle() . '</td><td></td></tr>';
-          }
+            echo '<tr><td>' . $exercise->getTitle() . '</td><td>
+            <a title="Show results" href="/exercises/'.$exercise->getId().'/results"><i class="fa fa-chart-bar"></i></a>
+            <a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete" href="/exercises/'.$exercise->getId().'?>"><i class="fa fa-trash"></i></a>
+            </td></tr>';
+          }                 
         }
         ?>
-        <!--
-          <tr>
-            <td>Mathieu</td>
-            <td>
-              <a title="Show results" href="https://stormy-plateau-54488.herokuapp.com/exercises/365/results"><i class="fa fa-chart-bar"></i></a>
-              <a data-confirm="Are you sure?" title="Destroy" rel="nofollow" data-method="delete" href="https://stormy-plateau-54488.herokuapp.com/exercises/365"><i class="fa fa-trash"></i></a>
-            </td>
-          </tr>-->
-
       </tbody>
     </table>
   </section>
