@@ -2,16 +2,19 @@
 
 actor user as user #black
 participant exerciseHandler as ExerciseHandler <<ExerciseHandler>>
+participant exercise as Exercise <<Exercise>>
+participant question as Question <<Question>>
+participant answer as Answer <<Answer>>
+participant result as Result <<Result>>
 participant query as Query <<Query>>
 participant connect as DbConnector <<DbConnector>> 
-participant exercise as Exercise <<Exercise>>
 user -> ExerciseHandler : GetExercise()
 ExerciseHandler -> Query : Select()
 Query -> DbConnector : Execute()
 DbConnector->DbConnector : FechAll()
 loop For each 
 DbConnector->Exercise : __Construct()
-Exercise-->DbConnector : Exericse
+Exercise-->DbConnector : Execute()
 end
 DbConnector --> Query : Exercises
 Query --> ExerciseHandler : Exercises
@@ -20,7 +23,65 @@ ExerciseHandler --> user : Exercises
 user->ExerciseHandler : Create()
 ExerciseHandler->Query : Insert()
 Query->DbConnector : Execute()
+
 user->ExerciseHandler : Delete()
 ExerciseHandler->Query : Delete()
+Query->DbConnector : Execute()
+
+user->ExerciseHandler : CreateQuestion()
+Question->Query : Insert()
+Query->DbConnector : Execute()
+
+user->ExerciseHandler : DeleteQuestion()
+Question->Query : Delete()
+Query->DbConnector : Execute()
+
+user-> ExerciseHandler : AddAnswer()
+ExerciseHandler->Query : insertAnswer()
+Query->DbConnector : Execute()
+
+user-> ExerciseHandler : Answering()
+ExerciseHandler->Query : Answering()
+Query->DbConnector : Execute()
+
+user-> ExerciseHandler : updateQuestion()
+ExerciseHandler->Query : updateQuestion()
+Query->DbConnector : Execute()
+
+user-> ExerciseHandler : getQuestion()
+ExerciseHandler->Query : selectQuestion()
+Query->DbConnector : Execute()
+
+user-> ExerciseHandler : getQuestionsFromExercise()
+ExerciseHandler->Query : selectQuestionsFromExercise()
+Query->DbConnector : Execute()
+
+user-> ExerciseHandler : getExerciseFromQuestion()
+ExerciseHandler->Query : getExerciseFromQuestion()
+Query->DbConnector : Execute()
+
+user-> ExerciseHandler : getAnswersFromExercise()
+ExerciseHandler->Query : getAnswersFromExercise()
+loop For each 
+DbConnector->Answer : __Construct()
+Answer-->DbConnector : Execute()
+end
+
+user-> ExerciseHandler : getResultsFromAnswer()
+ExerciseHandler->Query : getResultsFromAnswer()
+DbConnector->Result : __Construct()
+Result->DbConnector : Execute()
+
+
+user-> ExerciseHandler : getResultsFromQuestion()
+ExerciseHandler->Query : getResultsFromQuestion()
+Query->DbConnector : Execute()
+
+user-> ExerciseHandler : getAnswer()
+ExerciseHandler->Query : getAnswer()
+Query->DbConnector : Execute()
+
+user-> ExerciseHandler : Close()
+ExerciseHandler->Query : Close()
 Query->DbConnector : Execute()
 @enduml
