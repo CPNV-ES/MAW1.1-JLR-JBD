@@ -103,17 +103,17 @@ class ExerciseHandler
         return $this->query->getAnswer($answer);
     }
 
-    public function addAnswer ($answers)
+    public function addAnswer($answers)
     {
         $this->query->insertAnswer($answers);
     }
 
-    public function Answering ($id)
+    public function Answering($id)
     {
         $this->query->Answering($id);
     }
 
-    public function Close ($id)
+    public function Close($id)
     {
         $this->query->Close($id);
     }
