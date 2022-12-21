@@ -29,8 +29,9 @@ Notre environnement de travail consiste d'un IDE, PHP, visialiseur de base de do
 - DrawIO : parreil que pour Mysql Workbench, peu importe, l'application ou la version, il faut juste une application permmetant de faire un MCD
 
 # Choix
-## typage
-Le typage est pris en compte dans les classes, avec la bonne utilisation des types, afin d'éviter des problèmes à l'affection d'une variable php, et son utilisation par la suite
+
+## Structure
+Nous avons adopté une structure MVC en nous basant sur un exercice du module PRW1 "OOlesFramwork". Nous avons index.php dans le dossier public, cet index realise des actions primaires et necessaire à l'application (comme un session_start et initialiser le bag) avant d'appeler à tour de role le dispatcher le handler et le renderer.
 
 # Source
 Le projet de base (Vue), est pris de [stormy-plateau-54488.herokuapp.com](https://stormy-plateau-54488.herokuapp.com), y compris le CSS
