@@ -11,6 +11,13 @@ class ExerciseHandler{
     +getQuestionsFromExercise(Exercise exercise) : array
     +deteQuestion(Int id) : void 
     +getExerciseFromQuestion(Int id_question) : Exercise
+    +getAnswersFromExercise(Int id) : array
+    +getResultsFromAnswer(Int id) : array
+    +getAnswer(Int id) : array 
+    +addAnswer(Answer[] answers) : void
+    +Answering(Int id) : void
+    +Close(Int id) : void
+
 }
 class Query{
     -dbconnector : DBConnector
@@ -22,6 +29,12 @@ class Query{
     +insertQuestion(Int idExercise, String title, Int type) : void
     +deleteQuestion(Int id) : void
     +getExerciseFromQuestion(Int id_question) : Exercise
+    +getAnswersFromExercise(Int id) : array
+    +getResultsFromAnswer(Int id) : array
+    +getAnswer(Int id) : array 
+    +insertAnswer(Answer[] answers) : void
+    +Answering(Int id) : void
+    +Close(Int id) : void
 }
 class Exercise{
     -id : Int
@@ -53,10 +66,29 @@ class Question{
     +getResult() : String
     +getType() : Int
 }
+class Result{
+-idResults : Int
+-Answers_idAnswers : Int
+-result : String
++Result(Int idResults, String result, Int Answers_idAnswers)
++getId() : Int
++getForgeinId() : Int
++getResult() : String
+}
+
+class Answer{
+-idAnswers : Int
+-CreateDate : String
++Answer(Int idAnswers, String createDate)
++getId() : Int
++getCreateDate() : String
+}
 
 ExerciseHandler "1" ..> "1" Query 
 Query "1" --* "1" DBConnector 
 ExerciseHandler "1" ..> "*" Exercise 
 Exercise "*" ..> "*" Question 
+ExerciseHandler "1" ..> "*" Result
+Result "*" -- "*" Answer
 @enduml
 
